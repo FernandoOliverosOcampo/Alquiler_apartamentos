@@ -1,0 +1,381 @@
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap";
+*{
+    margin:0;
+    font-family: "Poppins", sans-serif;
+}
+header {
+    height: 90px;
+    background: #fdfdfd;
+    width: auto;
+    padding: 33px 30px;
+}
+/** menu section **/
+
+.titulo__menu{
+    font-weight: bold;
+    font-size: 2vw;
+    color:#000;
+}
+
+ul.email {
+
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    flex-wrap: wrap;
+}
+
+ul.email li {
+    display: inline-block;
+    color: black;
+    padding: 0 20px;
+    font-size: 17px;
+}
+li{
+    list-style: none;
+}
+ul.email li:last-child {
+    padding-right: 0;
+}
+
+ul.email li a {
+    font-size: 16px;
+}
+
+ul.email li a {
+    color: black;
+}
+
+ul.email li i {
+    color: black;
+    font-size: 20px;
+    padding-right: 10px;
+}
+
+ul.email li a:hover {
+    color:black;
+}
+
+ul.email li img {
+    padding-right: 10px;
+}
+
+/** banner_main **/
+
+.banner_main {
+    background: url(../imagenes/apartamento-fondo.jpg);
+    background-size: 100% 100%;
+    background-position: center;
+    background-repeat: no-repeat;
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.banner_main {
+    position: relative;
+}
+
+.relative {
+    position: inherit;
+    bottom: 0;
+    padding: 0;
+}
+
+.bg_white {
+    background: #fffffff0;
+    padding: 45px 20px 50px 20px;
+    opacity: 0.90;
+}
+
+.banner_main .bg_white h1 {
+    color: #141111;
+    text-align: center;
+    font-size: 70px;
+    line-height: 84px;
+    font-weight: 700;
+    padding-bottom: 22px;
+}
+
+.banner_main .bg_white p {
+    
+    margin: 20px;
+    color: #2d2d2d;
+    text-align: justify;
+    line-height: 30px;
+    font-weight: 500;
+    padding-bottom: 0px;
+   
+}
+
+.banner_main .ban_btn {
+    display: block;
+    background: #fff;
+    color: #000;
+    font-size: 17px;
+    font-weight: 500;
+    margin: 0 auto;
+    margin-top: 55px;
+  
+}
+
+.ban_btn .carousel-control-next-icon,
+.carousel-control-prev-icon {
+    display: none;
+}
+
+
+/*Contacto whatsapp*/
+.btn-whatsapp {
+	position: fixed;
+	z-index: 999;
+	bottom: 20px;
+	right: 20px;
+}
+
+.btn-whatsapp:before,
+.btn-whatsapp:after {
+	content: "";
+	position: absolute;
+	top: 2px;
+	left: 4px;
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+	background-color: #00e676;
+	opacity: 0;
+	animation: onda 1.7s infinite;
+}
+
+.btn-whatsapp:before {
+	animation-delay: 1s;
+}
+
+.btn-whatsapp:after {
+	animation-delay: 1.3s;
+}
+
+.btn-whatsapp img {
+	position: relative;
+	z-index: 2;
+}
+
+@keyframes onda {
+	0% {
+		transform: scale(1);
+	}
+
+	15%{
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(2.5);
+	}
+}
+/*CONTENIDO CASA*/
+.contenedor-alquileres .contenido {
+    display: flex;
+    column-gap: 5vw;
+    row-gap: 2vw;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.top-right {
+    background-color: greenyellow;
+    position: absolute;
+    top: 8px;
+    width: 7vw;
+    border-radius: 0.5vw;
+    right: 0.5vw;
+}
+.contenido .casa {
+    display: grid;
+    grid-template-areas:
+        "imagen"
+        "informacion";
+    grid-template-rows: 1fr 1fr;
+    justify-items: center;
+    border-radius: 0.5vw;
+    text-align: center;
+    background-color: #fff;
+    height: 70vh;
+    box-shadow: 0px 0px 30px rgba(221, 221, 211, 0.3);
+}
+
+.casa .casa-imagen {
+    grid-area: imagen;
+}
+
+.casa .casa-contenido {
+    grid-area: informacion;
+}
+
+.casa .casa-contenido {
+    display: grid;
+    column-gap: 2vw;
+    justify-items: center;
+    padding: 0.5vw 1vw 1vw;
+}
+
+.casa-contenido .casa-info {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1.2vw;
+    font-size: 1vw;
+}
+
+.casa-titulo .casa__titulo {
+    font-size: 1.7vw;
+    font-weight: 600;
+}
+
+.casa-boton-info a {
+    text-decoration: none;
+    color: black;
+    background-color: aquamarine;
+    padding: 0.5vw;
+    border-radius: 0.3vw;
+    font-size: 1.1vw;
+}
+.contenido .casa .casa-imagen img {
+    max-height: 50vh;
+    max-width: 80vw;
+    width: 30vw;
+    height: 40vh;
+}
+.casa-imagen {
+    position: relative;
+}
+button {
+    width: 10vw;
+    height: 5vh;
+    cursor: pointer;
+    border: 1px solid transparent;
+    background-color: aquamarine;
+    font-size: 2.3vh;
+    font-weight: 500;
+    border-radius: 0.3vw;
+}
+
+
+/* FOOTER */
+.footer-container{
+	background-color: #edebed8c;
+	display: flex;
+	justify-content: space-around;
+	padding: 2vw 3vw;
+}
+
+
+.footer-logo{
+	
+	width: 18vw;
+	margin-left: 7rem;
+}
+.footer-logo h2{
+	font-size: 2vw;
+}
+.footer-logo p{
+	font-size: 1vw;
+	color: #6e6b6b;
+	padding: 1.5rem 0rem;
+	line-height: 2.1rem;
+}
+.footer-logo a{
+	text-decoration: none;
+}
+.fa{
+	background-color: var(--black);
+	color: #ffffff;
+	padding: .6rem;
+	border-radius: .3rem;
+}
+.icons{
+	margin: 0rem 1.5rem;
+}
+
+.footer-links{
+	width: 40vw;
+	display: flex;
+	justify-content: space-between;
+	font-size: 1vw;
+}
+.footer-links ul a li{
+	list-style-type: none;
+	padding: 1rem 0rem;
+}
+.footer-links ul a{
+	text-decoration: none;
+	color: #6e6b6b;
+}	
+
+.footer-contactus{
+	width: 17vw;
+}
+.footer-contactus h2{
+	font-size: 2vw;
+}
+.footer-contactus button{
+    font-size: 1vw;
+    background: greenyellow;
+    border: none;
+    border-radius: .4rem;
+    color: black;
+    margin-top: 1.6rem;
+    cursor: pointer;
+}
+.copywright-tag{
+	background-color: lightgray;
+	padding: 1.5rem;
+	font-size: 1vw;
+	text-align: center;
+}
+.redes{
+    color:black;
+}
+
+/*mapa*/
+.mapa {
+    width: 30%;
+    height: 400px;
+    border-radius: 15px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+  
+@media(max-width: 986px){
+	html{
+		font-size: 55%;
+	}
+}
+@media(max-width: 800px){
+	.footer-container{
+		flex-direction: column;
+		align-items: center;
+	}
+	.footer-logo{
+		width: 32vw;
+		margin-bottom: 3rem;
+		margin-left: 0rem;
+	}
+	.footer-links{
+		flex-direction: column;
+		text-align: center;
+	}
+	.footer-links h3{
+		font-size: 2.4rem;
+		margin: 1rem 0px;
+	}
+	.footer-contactus{
+		width: 21vw;
+		margin-top: 2.4rem;
+		text-align: center;
+	}
+	.footer-contactus h2{
+		font-size: 2.5rem;
+	}
+}
