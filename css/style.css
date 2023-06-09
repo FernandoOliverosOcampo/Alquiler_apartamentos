@@ -7,6 +7,7 @@
 
 body{
     background-color: #f2f2f2;
+    scroll-behavior: smooth;
 }
 
 button {
@@ -179,46 +180,126 @@ li{
 }
 
 /*Contacto whatsapp*/
-.btn-whatsapp {
-	position: fixed;
-	z-index: 999;
-	bottom: 20px;
-	right: 20px;
+#floating-button {
+    position: fixed;
+    bottom: 45px;
+    right: 40px;
+    z-index: 100;
 }
 
-.btn-whatsapp:before,
-.btn-whatsapp:after {
+#chat-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #25d366;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  
+    
+}
+
+#chat-circle:hover {
+    transform: scale(1.1);
+}
+
+#chat-box {
+    width: 300px;
+    max-width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    z-index: 99;
+    border-radius: 15px;
+}
+
+.chat-box-header {
+    background-color: #25d366;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.chat-box-header h5 {
+    margin: 0;
+}
+
+#chat-box-toggle {
+    cursor: pointer;
+}
+
+.chat-box-body {
+    padding: 10px;
+}
+.mensaje{
+    margin: 10px;
+    
+
+}
+
+.btn {
+    padding: 5px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #25d366;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-whatsapp {
+    background-color: #25d366;
+    height: 4vh;
+    width: 10vw;
+}
+
+.btn-whatsapp:hover {
+    background-color: #128c7e;
+}
+.fa-whatsapp{
+    margin:5px;
+}
+#chat-circle:before,
+#chat-circle:after {
 	content: "";
 	position: absolute;
-	top: 2px;
-	left: 4px;
-	width: 45px;
-	height: 45px;
+	width: 40px;
+	height: 40px;
 	border-radius: 50%;
 	background-color: #00e676;
 	opacity: 0;
 	animation: onda 1.7s infinite;
 }
 
-.btn-whatsapp:before {
+#chat-circle:before {
 	animation-delay: 1s;
 }
 
-.btn-whatsapp:after {
+#chat-circle:after {
 	animation-delay: 1.3s;
 }
-
-.btn-whatsapp img {
+#chat-circle img {
 	position: relative;
 	z-index: 2;
 }
+
 
 @keyframes onda {
 	0% {
 		transform: scale(1);
 	}
 
-	15%{
+	15% {
 		opacity: 1;
 	}
 
@@ -227,6 +308,8 @@ li{
 		transform: scale(2.5);
 	}
 }
+
+
 /*CONTENIDO CASA*/
 .contenedor-alquileres{
     display: flex;
@@ -234,6 +317,16 @@ li{
     row-gap: 2vw;
     flex-wrap: wrap;
     justify-content: center;
+}
+
+.contenedor-alquileres .btn-vermas{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn__vermas{
+    text-decoration: none;
 }
 
 .top-right {
@@ -244,6 +337,7 @@ li{
     border-radius: 0.5vw;
     right: 0.5vw;
 }
+
 .contenedor-alquileres .casa {
     display: grid;
     grid-template-areas:
@@ -284,7 +378,7 @@ li{
     font-weight: 600;
 }
 
-.contenedor-alquileres .casa-boton-info a {
+.contenedor-alquileres   a {
     text-decoration: none;
     color: black;
     background-color: aquamarine;
@@ -428,7 +522,6 @@ li{
     "informacion"
     "mapa";
     grid-template-columns: 1fr;
-    row-gap: 2vw;
 }
 
 .mapa-contenedor .mapa{
@@ -439,11 +532,13 @@ li{
     grid-area: informacion;
     display: grid;
     justify-content: center;
-    height: 30vh;
+    height: 25vh;
     background-color: #00e676;
     justify-items: center;
     width: 70vw;
     align-items: center;
+    border-top-left-radius: 0.5vw;
+    border-top-right-radius: 0.5vw ;
 }
 
 .informacion-mapa .informacion-contenedor{
@@ -494,6 +589,8 @@ li{
     justify-content: center;
     height: 60vh;
     align-items: center;
+    
+    
 
 }
 

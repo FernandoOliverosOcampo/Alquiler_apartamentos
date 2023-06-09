@@ -4,15 +4,33 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="./css/style.css">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <meta name="keywords" content="">
+    <link rel="shortcut icon" href="./imagenes/building-regular.svg" type="image/x-icon">
+    <meta name="keywords" content="Alquiler de apartamentos,
+    Apartamentos en Santa Marta,
+    Alojamiento en Santa Marta,
+    Apartamentos amoblados,
+    Alquiler vacacional,
+    Apartamentos económicos,
+    Apartamentos de lujo,
+    Alquiler por días/semanas/meses,
+    Alquiler a largo plazo,
+    Apartamentos frente al mar,
+    Vista al mar,
+    Apartamentos con piscina,
+    Alquiler de habitaciones,
+    Zona turística de Santa Marta,
+    Centro histórico de Santa Marta,
+    Apartamentos cerca de la playa,
+    Alojamiento para familias/grupos,
+    Apartamentos céntricos,
+    Alquiler de apartamentos amueblados,
+    Apartamentos con servicios incluidos">
     <meta name="description" content="Empresa dedicada al alquiler de apartamentos en la ciudad de Santa Marta, contamos
                                     con todos tipo de apartamentos, contatactanos para mas información.">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Hoja de estilos de Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-
 
     <title>Alquiler de Apartamentos</title>
 </head>
@@ -37,10 +55,10 @@
                 </ul>
 
                 <ul class="opciones-menu-navegacion">
-                    <li class="menu-navegacion__opcion"> <a href="">Inicio</a> </li>
-                    <li class="menu-navegacion__opcion"> <a href="">¿Quienes Somos?</a></li>
-                    <li class="menu-navegacion__opcion"> <a href="">Alquileres</a> </li>
-                    <li class="menu-navegacion__opcion"> <a href="">Contáctanos</a> </li>
+                    <li class="menu-navegacion__opcion"> <a href="index.html">Inicio</a> </li>
+                    <li class="menu-navegacion__opcion"> <a href="#about-us"  class="smooth-scroll">¿Quienes Somos?</a></li>
+                    <li class="menu-navegacion__opcion"> <a href="./paginas/alquiler_apartamentos.html" >Alquileres</a> </li>
+                    <li class="menu-navegacion__opcion"> <a href="#contactanos"  class="smooth-scroll">Contáctanos</a> </li>
                 </ul>
             </div>
         </nav>
@@ -75,11 +93,16 @@
         </div>
 
         <section class="contenedor-alquileres" id="contenidoAlquileres">
+            
             <div id="modal" class="modal">
                 <div class="modal-contenido">
                     <!-- Aquí puedes agregar el contenido específico del modal -->
                 </div>
             </div>
+<!--
+            <div class="btn-vermas">
+                <a class="btn__vermas" href="paginas/alquiler_apartamentos.html"> Ver más </a>
+            </div> -->
         </section>
 
         <section class="mapa-contenido">
@@ -106,7 +129,7 @@
 
         </section>
 
-        <section class="acerca-de">
+        <section class="acerca-de" id="about-us">
 
             <div class="acerca-de-contenido">
                 <!--<i class="fa-solid fa-house"></i>-->
@@ -122,7 +145,7 @@
         </section>
 
         <footer>
-            <div class="footer-container">
+            <div class="footer-container" id="contactanos">
                 <div class="footer-logo">
                     <h2>Inmobilaria</h2>
                     <p>Algún lema de la Inmobilaria</p>
@@ -165,11 +188,23 @@
         </footer>
 
     </div>
+    <!-- boton de whatsapp -->
+    <div id="floating-button">
+        <div id="chat-circle" class="btn btn-raised">
+            <img src="./imagenes/icon-whatsapp.svg" alt="Contactar por whatsapp">
+        </div>
+        <div id="chat-box" class="chat-box">
+            <div class="chat-box-header">
+                <h5>Chat de WhatsApp</h5>
+                <span id="chat-box-toggle">&times;</span>
+            </div>
+            <div class="chat-box-body">
+                <p class="mensaje">¡Hola! ¿En qué puedo ayudarte?</p>
+                <a href="https://wa.me/573152702656" target="_blank" class="btn btn-whatsapp"><i class="fa fa-whatsapp"></i>Contáctanos</a>
+            </div>
+        </div>
+    </div>
 
-
-    <a href="https://wa.me/573152702656" class="btn-whatsapp" target="_blank">
-        <img src="./imagenes/icon-whatsapp.svg" alt="Contactar por whatsapp">
-    </a>
 
     <script src="https://kit.fontawesome.com/1a5bcd4a97.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>

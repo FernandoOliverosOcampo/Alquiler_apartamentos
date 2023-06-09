@@ -1,0 +1,243 @@
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap";
+
+* {
+    margin: 0;
+    font-family: "Poppins", sans-serif;
+}
+
+body {
+    background-color: #f2f2f2;
+    scroll-behavior: smooth;
+}
+
+button {
+    width: 10vw;
+    height: 5vh;
+    cursor: pointer;
+    border: 1px solid transparent;
+    background-color: aquamarine;
+    font-size: 1vw;
+    font-weight: 400;
+    border-radius: 0.3vw;
+}
+
+li {
+    list-style: none;
+}
+
+/** menu section **/
+
+.menu {
+    background: #fdfdfd;
+    display: grid;
+    padding: 1.2vw 2vw;
+}
+
+.menu-contenedor {
+    display: grid;
+    grid-template-areas: "titulo opciones enlaces_directos";
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-titulo {
+    grid-area: titulo;
+    display: grid;
+    align-items: center;
+}
+
+.menu-opciones {
+    grid-area: enlaces_directos;
+    display: flex;
+    column-gap: 1vw;
+    align-items: center;
+}
+
+.menu-navegacion {
+    grid-area: opciones;
+    display: grid;
+    justify-content: center;
+}
+
+.titulo__menu {
+    font-weight: bold;
+    font-size: 1vw;
+    color: #141111;
+}
+
+.menu-opciones li a {
+    color: #141111;
+}
+
+.menu-opciones .menu__opcion,
+.menu-opciones .menu__opcion i {
+    font-size: 1.5vw;
+    color: #141111;
+}
+
+.opciones-menu-navegacion {
+    display: flex;
+}
+
+.opciones-menu-navegacion .menu-navegacion__opcion {
+    padding: 0.5vw 3vw;
+}
+
+.opciones-menu-navegacion .menu-navegacion__opcion a {
+    text-decoration: none;
+    color: #141111;
+}
+
+.opciones-menu-navegacion .menu-navegacion__opcion a:hover {
+    border-bottom: 1px solid #141111;
+}
+
+
+.estructura-pagina {
+    display: grid;
+    grid-template-areas:
+        "lista_alquileres editar_informacion";
+    grid-template-columns: 60vw;
+    padding: 2vw;
+    column-gap: 1vw;
+}
+
+.lista-alquileres {
+    display: grid;
+    row-gap: 5vh;
+    grid-area: lista_alquileres;
+}
+
+.editar-informacion-datos{
+    grid-area: editar_informacion;
+}
+
+.lista-alquileres .casa {
+    display: grid;
+    grid-template-areas:
+        "imagen informacion";
+    grid-template-rows: auto;
+    justify-items: center;
+    justify-content: space-between;
+    border-radius: 0.5vw;
+    text-align: center;
+    background-color: #fff;
+    height: 20vh;
+    width: 60vw;
+    box-shadow: 0px 0px 30px rgba(221, 221, 211, 0.3);
+}
+
+.lista-alquileres .casa .casa-imagen .casa__imagen {
+    height: 20vh;
+    width: 15vw;
+}
+
+.lista-alquileres .casa .casa-contenido {
+    display: grid;
+    grid-template-areas:
+        "titulo info boton";
+    align-items: center;
+}
+
+.lista-alquileres .casa .casa-titulo {
+    grid-area: titulo;
+}
+
+.lista-alquileres .casa .casa-info {
+    grid-area: info;
+}
+
+.lista-alquileres .casa .casa-boton {
+    grid-area: boton;
+}
+
+/*CONTENIDO CASA*/
+.casa .casa-imagen img {
+    max-height: 50vh;
+    max-width: 80vw;
+    width: 30vw;
+    height: 40vh;
+}
+
+.casa-imagen {
+    position: relative;
+}
+
+.top-right {
+    background-color: greenyellow;
+    position: absolute;
+    top: 8px;
+    width: 7vw;
+    border-radius: 0.5vw;
+    right: 0.5vw;
+}
+
+.casa .casa-contenido {
+    display: grid;
+    column-gap: 2vw;
+    justify-items: center;
+    padding: 0.5vw 1vw 1vw;
+}
+
+.casa .casa-imagen {
+    grid-area: imagen;
+}
+
+.casa .casa-contenido {
+    grid-area: informacion;
+}
+
+.casa .casa-contenido {
+    display: grid;
+    column-gap: 2vw;
+    justify-items: center;
+    padding: 0.5vw 1vw 1vw;
+}
+
+.casa-contenido .casa-info {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1.2vw;
+    font-size: 1vw;
+}
+
+.casa-boton-info a {
+    text-decoration: none;
+    color: black;
+    background-color: aquamarine;
+    padding: 0.5vw;
+    border-radius: 0.3vw;
+    font-size: 1.1vw;
+}
+
+.editar-informacion-contenedor{
+    display: flex;
+    flex-direction: column;
+    row-gap: 2vw;
+    padding: 2vw;
+    position: fixed;
+    border: #f2f2f2;
+    background-color: #fff;
+    border-radius: 0.5vw;
+    box-shadow: 0px 0px 30px rgba(221, 221, 211, 0.3);
+    width: 30vw;
+    height: auto;
+}
+
+.editar-informacion-datos .imagen-casa img{
+    height: 20vh;
+    width: auto;
+}
+
+.editar-informacion-botones{
+    display: flex;
+    column-gap: 1vw;
+}
+
+.editar-informacion-datos input, select{
+    width: 30vw;
+}
+
+.editar-informacion-datos .descripcion-casa textarea{
+    resize: none;
+}
