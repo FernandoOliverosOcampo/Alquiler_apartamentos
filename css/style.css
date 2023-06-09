@@ -1,13 +1,8 @@
 @import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap";
+
 *{
     margin:0;
     font-family: "Poppins", sans-serif;
-}
-header {
-    height: 90px;
-    background: #fdfdfd;
-    width: auto;
-    padding: 33px 30px;
 }
 
 button {
@@ -21,59 +16,104 @@ button {
     border-radius: 0.3vw;
 }
 
-/** menu section **/
-
-.titulo__menu{
-    font-weight: bold;
-    font-size: 2vw;
-    color:#000;
-}
-
-ul.email {
-
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    flex-wrap: wrap;
-}
-
-ul.email li {
-    display: inline-block;
-    color: black;
-    padding: 0 20px;
-    font-size: 17px;
-}
 li{
     list-style: none;
 }
-ul.email li:last-child {
-    padding-right: 0;
+
+.estructura-pagina{
+    display: grid;
+    grid-template-areas: 
+    "banner"
+    "alquileres"
+    "mapa"
+    "acerca_de";
+    grid-template-rows: 1fr;
+    row-gap: 2vw;
 }
 
-ul.email li a {
-    font-size: 16px;
+.banner_main{
+    grid-area: banner;
 }
 
-ul.email li a {
-    color: black;
+.contenedor-alquileres{
+    grid-area: alquileres;
 }
 
-ul.email li i {
-    color: black;
-    font-size: 20px;
-    padding-right: 10px;
+.mapa-contenido{
+    grid-area: mapa;
 }
 
-ul.email li a:hover {
-    color:black;
+.acerca-de{
+    grid-area: acerca_de;
 }
 
-ul.email li img {
-    padding-right: 10px;
+/** menu section **/
+
+.menu {
+    background: #fdfdfd;
+    display: grid;
+    padding: 1.2vw 2vw;
+}
+
+.menu-contenedor{
+    display: grid;
+    grid-template-areas: "titulo opciones enlaces_directos";
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-titulo{
+    grid-area: titulo;
+    display: grid;
+    align-items: center;
+}
+
+.menu-opciones{
+    grid-area: enlaces_directos;
+    display: flex;
+    column-gap: 1vw;
+    align-items: center;
+}
+
+.menu-navegacion{
+    grid-area: opciones;
+    display: grid;
+    justify-content: center;
+}
+
+.titulo__menu{
+    font-weight: bold;
+    font-size: 1vw;
+    color:#141111;
+}
+
+.menu-opciones li a {
+    color: #141111;
+}
+
+.menu-opciones .menu__opcion, .menu-opciones .menu__opcion i{
+    font-size: 1.5vw;
+    color: #141111;
+}
+
+.opciones-menu-navegacion{
+    display: flex;
+}
+
+.opciones-menu-navegacion .menu-navegacion__opcion{
+    padding: 0.5vw 3vw;
+}
+
+.opciones-menu-navegacion .menu-navegacion__opcion a{
+    text-decoration: none;
+    color: #141111;
+}
+
+.opciones-menu-navegacion .menu-navegacion__opcion a:hover{
+    border-bottom: 1px solid #141111;
 }
 
 /** banner_main **/
-
 .banner_main {
     background: url(../imagenes/apartamento-fondo.jpg);
     background-size: 100% 100%;
@@ -111,14 +151,12 @@ ul.email li img {
 }
 
 .banner_main .bg_white p {
-    
     margin: 20px;
     color: #2d2d2d;
     text-align: justify;
     line-height: 30px;
     font-weight: 500;
     padding-bottom: 0px;
-   
 }
 
 .banner_main .ban_btn {
@@ -129,14 +167,12 @@ ul.email li img {
     font-weight: 500;
     margin: 0 auto;
     margin-top: 55px;
-  
 }
 
 .ban_btn .carousel-control-next-icon,
 .carousel-control-prev-icon {
     display: none;
 }
-
 
 /*Contacto whatsapp*/
 .btn-whatsapp {
@@ -188,13 +224,14 @@ ul.email li img {
 	}
 }
 /*CONTENIDO CASA*/
-.contenedor-alquileres .contenido {
+.contenedor-alquileres{
     display: flex;
-    column-gap: 5vw;
+    column-gap: 1vw;
     row-gap: 2vw;
     flex-wrap: wrap;
     justify-content: center;
 }
+
 .top-right {
     background-color: greenyellow;
     position: absolute;
@@ -203,7 +240,7 @@ ul.email li img {
     border-radius: 0.5vw;
     right: 0.5vw;
 }
-.contenido .casa {
+.contenedor-alquileres .casa {
     display: grid;
     grid-template-areas:
         "imagen"
@@ -217,34 +254,33 @@ ul.email li img {
     box-shadow: 0px 0px 30px rgba(221, 221, 211, 0.3);
 }
 
-.casa .casa-imagen {
+.contenedor-alquileres .casa .casa-imagen {
     grid-area: imagen;
 }
 
-.casa .casa-contenido {
+.contenedor-alquileres .casa .casa-contenido {
     grid-area: informacion;
 }
 
-.casa .casa-contenido {
+.contenedor-alquileres .casa .casa-contenido {
     display: grid;
-    column-gap: 2vw;
     justify-items: center;
     padding: 0.5vw 1vw 1vw;
 }
 
-.casa-contenido .casa-info {
+.contenedor-alquileres .casa-contenido .casa-info {
     display: flex;
     flex-direction: row;
     column-gap: 1.2vw;
     font-size: 1vw;
 }
 
-.casa-titulo .casa__titulo {
+.contenedor-alquileres .casa-titulo .casa__titulo {
     font-size: 1.7vw;
     font-weight: 600;
 }
 
-.casa-boton-info a {
+.contenedor-alquileres .casa-boton-info a {
     text-decoration: none;
     color: black;
     background-color: aquamarine;
@@ -252,7 +288,7 @@ ul.email li img {
     border-radius: 0.3vw;
     font-size: 1.1vw;
 }
-.contenido .casa .casa-imagen img {
+.contenedor-alquileres .casa .casa-imagen img {
     max-height: 50vh;
     max-width: 80vw;
     width: 30vw;
@@ -262,16 +298,133 @@ ul.email li img {
     position: relative;
 }
 
+/* Modal */
+.modal {
+    display: none;
+    /* POr defecto no se muestran en pantalla hasta que se abran */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.modal .modal-contenido {
+    display: grid;
+    height: 75vh;
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    width: 80vw;
+    border-radius: 0.4vw;
+    grid-template-areas:
+        "cabecera"
+        "cuerpo"
+        "pie";
+    grid-template-rows: 5vh auto 5vh;
+}
+
+.modal .modal-cabecera {
+    grid-area: cabecera;
+}
+
+.modal .modal-cuerpo {
+    grid-area: cuerpo;
+    display: grid;
+    grid-template-areas:
+        "imagen contenido"
+        "detalles detalles";
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    justify-content: start;
+}
+
+.modal-cuerpo .modal-detalles {
+    grid-area: detalles;
+    display: grid;
+}
+
+.modal-cuerpo .modal-detalles {
+    display: flex;
+    margin-left: 4.5vw;
+}
+
+.modal-cuerpo .modal-detalles .detalles {
+    display: flex;
+    padding: 0 1vw;
+    flex-direction: row;
+    column-gap: 2vw;
+    font-size: 1vw;
+}
+
+.modal-cuerpo .modal-cuerpo-imagen {
+    grid-area: imagen;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-cuerpo .modal-cuerpo-imagen img {
+    height: 45vh;
+    width: auto;
+}
+
+.modal-cuerpo .modal-cuerpo-contenido {
+    grid-area: contenido;
+    display: grid;
+    justify-content: start;
+}
+
+.modal-cuerpo .modal-cuerpo-contenido .descripcion-casa .descripcion-casa__texto{
+    font-size: 1vw;
+}
+
+.modal-pie {
+    grid-area: pie;
+    display: grid;
+    justify-content: end;
+}
+
+.modal__titulo {
+    font-size: 2vw;
+}
+
+.modal__descripcion {
+    color: #4e4e4e;
+    font-size: 1.2vw;
+}
+
+/* The Close Button */
+.btn-cerrar-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.btn-cerrar-modal:hover,
+.btn-cerrar-modal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
 .mapa-contenido{
+    display: grid;
+    justify-items: center;
     padding: 5vw;
 }
 
 .mapa-contenedor{
     display: grid;
     grid-template-areas: 
-    "mapa informacion";
-    grid-template-columns: 1fr 1fr;
-    column-gap: 5vw;
+    "informacion"
+    "mapa";
+    grid-template-columns: 1fr;
+    row-gap: 2vw;
 }
 
 .mapa-contenedor .mapa{
@@ -281,6 +434,45 @@ ul.email li img {
 .mapa-contenedor .informacion-mapa{
     grid-area: informacion;
     display: grid;
+    justify-content: center;
+    height: 30vh;
+    background-color: #00e676;
+    justify-items: center;
+    width: 70vw;
+    align-items: center;
+}
+
+.informacion-mapa .informacion-contenedor{
+    display: grid;
+    grid-template-areas: 
+    "titulo imagen"
+    "descripcion imagen";
+    grid-template-columns: 2fr 1fr;
+    justify-items: center;
+    align-items: center;
+    padding: 0 3vw;
+}
+
+.informacion-titulo{
+    grid-area: titulo;
+}
+
+.informacion-descripcion{
+    grid-area: descripcion;
+    text-align: center;
+}
+
+.informacion-imagen{
+    grid-area: imagen;
+}
+
+.informacion-imagen i{
+    font-size: 8vw;
+}
+
+
+.mapa-contenedor .informacion-mapa .informacion__titulo{
+    text-align: center;
 }
 
 /*mapa*/
