@@ -52,7 +52,7 @@ const Modelo = {
         }
 
         const res = await axios({
-            method: "PUT",
+            method: "PATCH",
             url: "https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/alquileres?id=eq." + idAlquiler,
             headers: config.headers,
             data: datos_modificar
@@ -125,6 +125,7 @@ const Vista = {
 
         for (let i = 0; i < 4 && i < data.length; i++) {
             const element = data[i];
+            console.log(element.disponibilidad_alquiler)
             if (element.disponibilidad_alquiler == "Disponible") {
                 var clase_css_disponibilidad = "top-right";
             } else {
@@ -195,8 +196,8 @@ const Vista = {
                                 <p>Disponibilidad</p>
                                 <select name="cars" id="disponibilidadSelect">
                                     <option selected="selected">${element.disponibilidad_alquiler}</option>
-                                    <option value="Si">Disponible</option>
-                                    <option value="No">No disponible</option>
+                                    <option value="Disponible">Disponible</option>
+                                    <option value="No disponible">No disponible</option>
                                 </select>
                             </div>
 
