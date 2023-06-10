@@ -330,7 +330,7 @@ li{
 }
 
 .top-right {
-    background-color: rgb(40, 231, 40);
+    background-color:rgb(43, 255, 43);
     position: absolute;
     top: 8px;
     width: 7vw;
@@ -667,6 +667,9 @@ li{
     color: black;
     margin-top: 1.6rem;
     cursor: pointer;
+}
+.footer-contactus button:hover{
+	transform: scale(1.1);
 }
 .copywright-tag{
 	background-color: lightgray;
