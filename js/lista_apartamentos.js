@@ -134,7 +134,7 @@ const Vista = {
         </div>
 
         <div class="modal-pie">
-          <button id="btnEliminarDatosModal">Contactar</button>
+        <a href="https://wa.me/573152702656" target="_blank"><button id="btnContactoDatosModal">Contactar</button></a>
       </div>
         `;
 

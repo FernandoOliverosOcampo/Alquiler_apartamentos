@@ -378,13 +378,8 @@ li{
     font-weight: 600;
 }
 
-.contenedor-alquileres   a {
-    text-decoration: none;
-    color: black;
-    background-color: aquamarine;
-    padding: 0.5vw;
-    border-radius: 0.3vw;
-    font-size: 1.1vw;
+ button:hover {
+   transform: scale(1.1);
 }
 .contenedor-alquileres .casa .casa-imagen img {
     max-height: 50vh;
