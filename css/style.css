@@ -401,7 +401,7 @@ li{
     display: none;
     /* POr defecto no se muestran en pantalla hasta que se abran */
     position: fixed;
-    z-index: 1;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
@@ -509,7 +509,7 @@ li{
     text-decoration: none;
     cursor: pointer;
 }
-
+/*CONTENIDO DEL MAPA*/
 .mapa-contenido{
     display: grid;
     justify-items: center;

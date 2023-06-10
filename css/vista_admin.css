@@ -136,7 +136,6 @@ textarea{
     width: 15vw;
 }
 
-
 .top-right {
     background-color: rgb(43, 255, 43);
     position: absolute;
@@ -219,9 +218,10 @@ textarea{
     column-gap: 1vw;
 }
 
-.editar-informacion-datos input,
-select {
-    width: 20vw;
+.editar-informacion-datos input, select {
+    width: 10vw;
+        padding: 0.5vw;
+    margin-left: 0.5vw;
 }
 
 .editar-informacion-datos .descripcion-casa textarea {
@@ -299,7 +299,6 @@ select {
     justify-items: center;
 }
 
-
 .modal-cuerpo .modal-cuerpo-contenido {
     grid-area: contenido;
     display: flex;
@@ -311,7 +310,6 @@ select {
     padding: 1vw;
 }
 
-
 .modal-cuerpo .modal-cuerpo-imagen {
     grid-area: imagen;
     display: flex;
@@ -322,7 +320,6 @@ select {
     height: 35vh;
     width: auto;
 }
-
 
 .modal-cuerpo .modal-cuerpo-contenido .descripcion-casa .descripcion-casa__texto {
     font-size: 1vw;
@@ -346,13 +343,13 @@ select {
 }
 
 .modal-cuerpo .modal-cuerpo-contenido input {
-    background-color: transparent;
-    border: none;
+    padding: 0.5vw;
+    margin-left: 0.5vw;
+    width: 30vw;
 }
 
 
 .modal-cuerpo .modal-cuerpo-contenido .titulo-casa p {
-    border-bottom: 1px solid #e7e7ec;
     font-weight: bold;
 }
 
@@ -372,6 +369,7 @@ select {
 }
 
 .modal-cuerpo .modal-cuerpo-contenido .secundario {
+    display: flex;
     grid-area: secundario;
 }
 

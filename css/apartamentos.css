@@ -25,36 +25,21 @@ button {
 	border-radius: 0.3vw;
 }
 
-.estructura-pagina {
+.contenido-pagina{
 	display: grid;
-	grid-template-areas:
-		"banner"
-		"alquileres"
-		"mapa"
-		"acerca_de";
+	grid-template-areas: 
+	"menu"
+	"contenido"
+	"footer";
 	grid-template-rows: 1fr;
 	row-gap: 2vw;
 }
 
-.banner_main {
-	grid-area: banner;
-}
-
-.contenedor-alquileres {
-	grid-area: alquileres;
-}
-
-.mapa-contenido {
-	grid-area: mapa;
-}
-
-.acerca-de {
-	grid-area: acerca_de;
-}
 
 /** menu section **/
 
 .menu {
+	grid-area: menu;
 	background: #fdfdfd;
 	display: grid;
 	padding: 1.2vw 2vw;
@@ -250,7 +235,7 @@ button {
 }
 
 
-.casa .casa-imagen img {
+.lista-alquileres .casa .casa-imagen img {
 	max-height: 50vh;
 	max-width: 80vw;
 	width: 30vw;
@@ -270,7 +255,7 @@ button {
 	right: 0.5vw;
 }
 
-.casa .casa-contenido {
+.lista-alquileres .casa .casa-contenido {
 	display: grid;
 	column-gap: 2vw;
 	justify-items: center;
@@ -278,34 +263,34 @@ button {
 }
 
 
-.casa .casa-imagen {
+.lista-alquileres .casa .casa-imagen {
     grid-area: imagen;
 }
 
-.casa .casa-contenido {
+.lista-alquileres .casa .casa-contenido {
     grid-area: informacion;
 }
 
-.casa .casa-contenido {
+.lista-alquileres .casa .casa-contenido {
     display: grid;
     column-gap: 2vw;
     justify-items: center;
     padding: 0.5vw 1vw 1vw;
 }
 
-.casa-contenido .casa-info {
+.lista-alquileres .casa-contenido .casa-info {
     display: flex;
     flex-direction: row;
     column-gap: 1.2vw;
     font-size: 1vw;
 }
 
-.casa-titulo .casa__titulo {
+.lista-alquileres .casa-titulo .casa__titulo {
     font-size: 1.7vw;
     font-weight: 600;
 }
 
-.casa-boton-info a {
+.lista-alquileres .casa-boton-info a {
     text-decoration: none;
     color: black;
     background-color: aquamarine;
@@ -313,8 +298,10 @@ button {
     border-radius: 0.3vw;
     font-size: 1.1vw;
 }
+
 .lista-alquileres {
 	display: grid;
+	grid-area: contenido;
 	justify-content: center;
 	row-gap: 5vh;
 }
@@ -358,6 +345,123 @@ button {
 	grid-area: boton;
 }
 
+/* Modal */
+.modal {
+    display: none;
+    /* POr defecto no se muestran en pantalla hasta que se abran */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+
+.modal .modal-contenido {
+    display: grid;
+    height: 75vh;
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    width: 80vw;
+    border-radius: 0.4vw;
+    grid-template-areas:
+        "cabecera"
+        "cuerpo"
+        "pie";
+    grid-template-rows: 5vh auto 5vh;
+}
+
+.modal .modal-cabecera {
+    grid-area: cabecera;
+}
+
+.modal .modal-cuerpo {
+    grid-area: cuerpo;
+    display: grid;
+    grid-template-areas:
+        "imagen contenido"
+        "detalles detalles";
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    justify-content: start;
+}
+
+.modal-cuerpo .modal-detalles {
+    grid-area: detalles;
+    display: grid;
+}
+
+.modal-cuerpo .modal-detalles {
+    display: flex;
+    margin-left: 4.5vw;
+}
+
+.modal-cuerpo .modal-detalles .detalles {
+    display: flex;
+    padding: 0 1vw;
+    flex-direction: row;
+    column-gap: 2vw;
+    font-size: 1vw;
+}
+
+.modal-cuerpo .modal-cuerpo-imagen {
+    grid-area: imagen;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-cuerpo .modal-cuerpo-imagen img {
+    height: 45vh;
+    width: auto;
+}
+
+.modal-cuerpo .modal-cuerpo-contenido {
+    grid-area: contenido;
+    display: grid;
+    justify-content: start;
+}
+
+.modal-cuerpo .modal-cuerpo-contenido .descripcion-casa .descripcion-casa__texto{
+    font-size: 1vw;
+}
+
+.modal-pie {
+    grid-area: pie;
+    display: grid;
+    justify-content: end;
+}
+
+.modal__titulo {
+    font-size: 2vw;
+}
+
+.modal__descripcion {
+    color: #4e4e4e;
+    font-size: 1.2vw;
+}
+
+/* The Close Button */
+.btn-cerrar-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.btn-cerrar-modal:hover,
+.btn-cerrar-modal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer{
+	grid-area: footer;
+}
 
 /* FOOTER */
 .footer-container {

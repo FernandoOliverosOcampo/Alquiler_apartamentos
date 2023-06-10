@@ -2,10 +2,10 @@ import config from './supabase/config.js';
 
 const Modelo = {
 
-    async insertarDatosContenido(nombreAlquiler, huespedesAlquiler, bañosAlquiler, cocinaAlquiler, descripcionAlquiler, imagenAlquiler) {
+    async insertarDatosContenido(nombreAlquiler, huespedesSelect, bañosAlquiler, cocinaAlquiler, descripcionAlquiler, imagenAlquiler) {
         const datos_insertar = {
             nombre_alquiler: nombreAlquiler,
-            huespedes_alquiler: huespedesAlquiler,
+            huespedes_alquiler: huespedesSelect,
             baños_alquiler: bañosAlquiler,
             cocina_alquiler: cocinaAlquiler,
             descripcion_alquiler: descripcionAlquiler,
@@ -31,6 +31,34 @@ const Modelo = {
         return res;
     },
 
+    async eliminarAlquileres(idAlquiler) {
+        const res = await axios({
+            method: "DELETE",
+            url: "https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/alquileres?id=eq." + idAlquiler,
+            headers: config.headers,
+        });
+        return res;
+    },
+
+    async modificarDatosAlquiler(idAlquiler, tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler) {
+        const datos_modificar = {
+            id: idAlquiler,
+            nombre_alquiler: tituloAlquiler,
+            huespedes_alquiler: huespedesSelect,
+            baños_alquiler: bañosSelect,
+            cocina_alquiler: cocinaSelect,
+            disponibilidad_alquiler: disponibilidadAlquiler,
+            descripcion_alquiler: descripcionAlquiler,
+        }
+
+        const res = await axios({
+            method: "PUT",
+            url: "https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/alquileres?id=eq." + idAlquiler,
+            headers: config.headers,
+            data: datos_modificar
+        });
+        return res;
+    },
 
 }
 
@@ -40,6 +68,27 @@ const Controlador = {
         try {
             const response = await Modelo.mostrarTodosAlquileres();
             Vista.mostrarInfoContenido(response.data);
+        } catch (err) {
+            console.log(err);
+        }
+    },
+
+    /* MODAL INSERTAR */
+    async getDatosApartamentoModificar(idAlquiler, tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler) {
+        try {
+
+            const res = await Modelo.modificarDatosAlquiler(idAlquiler, tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler);
+            console.log(res)
+        } catch (err) {
+            console.log(err);
+        }
+    },
+
+    /* MODAL ELIMINAR */
+    async eliminarDatosAlquiler(idAlquiler) {
+        try {
+            const res = await Modelo.eliminarAlquileres(idAlquiler);
+            alert("Se elimino el registro");
         } catch (err) {
             console.log(err);
         }
@@ -66,11 +115,13 @@ const Controlador = {
             });
         }
     }
+
 }
 
 const Vista = {
 
     mostrarInfoContenido: function (data) {
+
 
         for (let i = 0; i < 4 && i < data.length; i++) {
             const element = data[i];
@@ -122,35 +173,36 @@ const Vista = {
 
                     <div class="modal-cabecera-titulo">
                     <h2>Editar apartamento</h2>
+                        <p class="casa__id" id = "idAlquiler">${element.id}</p>
                     </div>
                     
                 </div>
       
                 <div class="modal-cuerpo">
                     <div class="modal-cuerpo-imagen">
-                        <img src="${element.imagen_alquiler}" alt="">
+                        <img src="${element.imagen_alquiler}" id = "imagenAlquiler" alt="">
                     </div>
                           
                     <div class="modal-cuerpo-contenido">
                         <div class="principal">
                             <div class="titulo-casa">
                                 <p>Titulo</p>
-                                <input type="text" class="titulo__casa" value = "${element.nombre_alquiler}">
+                                <input type="text" id = "tituloAlquiler" class="titulo__casa" value = "${element.nombre_alquiler}">
                             </div>
                         </div>
                         <div class="secundario">
                             <div class="disponibilidad-casa">
                                 <p>Disponibilidad</p>
-                                <select name="cars" id="cars">
-                                <option selected="selected">${element.disponibilidad_alquiler}</option>
-                                <option value="Si">Disponible</option>
-                                <option value="No">No disponible</option>
+                                <select name="cars" id="disponibilidadSelect">
+                                    <option selected="selected">${element.disponibilidad_alquiler}</option>
+                                    <option value="Si">Disponible</option>
+                                    <option value="No">No disponible</option>
                                 </select>
                             </div>
 
                             <div class="huespedes-casa">
-                                <p>Número de Huespedes</p>
-                                <select name="cars" id="cars">
+                                <p>Huespedes</p>
+                                <select name="cars" id="huespedesSelect">
                                     <option selected="selected">${element.huespedes_alquiler}</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -166,8 +218,8 @@ const Vista = {
                             </div>
 
                             <div class="baños-casa">
-                                <p>Número de baños</p>
-                                <select name="cars" id="cars">
+                                <p>Baños</p>
+                                <select name="cars" id="bañosSelect">
                                     <option selected="selected">${element.baños_alquiler}</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -179,7 +231,7 @@ const Vista = {
 
                             <div class="cocina-casa">
                                 <p>Cocina</p>
-                                <select name="cars" id="cars">
+                                <select name="cars" id="cocinaSelect">
                                     <option selected="selected">${element.cocina_alquiler}</option>
                                     <option value="Si">Si</option>
                                     <option value="No">No</option>
@@ -191,7 +243,7 @@ const Vista = {
                         <div class="terceario">
                             <div class="descripcion-casa">
                                 <p>Descripción</p>
-                                <textarea name="" id="" cols="60" rows="3">${element.descripcion_alquiler}</textarea>
+                                <textarea name="" id="descripcionAlquiler" cols="60" rows="3" >${element.descripcion_alquiler}</textarea>
                             </div>
                         </div>
 
@@ -202,7 +254,7 @@ const Vista = {
 
       
               <div class="modal-pie">
-                <button id="btnEliminarDatosModal">Editar</button>
+                <button id="btnEditarDatosModal">Editar</button>
                 <button id="btnEliminarDatosModal">Eliminar</button>
 
             </div>
@@ -221,6 +273,27 @@ const Vista = {
                     modal.style.display = 'none';
                 });
 
+                const btnEliminarDatosModal = document.getElementById('btnEliminarDatosModal');
+
+                btnEliminarDatosModal.addEventListener('click', () => {
+                    const idAlquiler = document.getElementById('idAlquiler').textContent;
+                    Controlador.eliminarDatosAlquiler(idAlquiler);
+                })
+
+                const btnEditarDatosModal = document.getElementById('btnEditarDatosModal')
+
+                btnEditarDatosModal.addEventListener('click', () => {
+                    const idAlquiler = document.getElementById('idAlquiler').textContent;
+                    const tituloAlquiler = document.getElementById('tituloAlquiler').value;
+                    const disponibilidadAlquiler = document.getElementById('disponibilidadSelect').value;
+                    const bañosSelect = document.getElementById('bañosSelect').value;
+                    const huespedesSelect = document.getElementById('huespedesSelect').value;
+                    const cocinaSelect = document.getElementById("cocinaSelect").value;
+                    const descripcionAlquiler = document.getElementById("descripcionAlquiler").value;
+
+                    Controlador.getDatosApartamentoModificar(idAlquiler, tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler);
+
+                })
             });
 
             listaAlquileres.append(contenido);
@@ -229,6 +302,8 @@ const Vista = {
 
     },
 }
+
+
 
 document.addEventListener('DOMContentLoaded', function () {
     Controlador.obtenerTodosAlquileres();
