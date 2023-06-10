@@ -76,9 +76,10 @@ const Controlador = {
     /* MODAL INSERTAR */
     async getDatosApartamentoModificar(idAlquiler, tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler) {
         try {
-
             const res = await Modelo.modificarDatosAlquiler(idAlquiler, tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler);
-            console.log(res)
+            let mensaje = "Los datos fueron modificados"
+            Vista.mostrarAlertaSatisfactorio(mensaje);
+
         } catch (err) {
             console.log(err);
         }
@@ -278,22 +279,91 @@ const Vista = {
 
                 btnEliminarDatosModal.addEventListener('click', () => {
                     const idAlquiler = document.getElementById('idAlquiler').textContent;
-                    Controlador.eliminarDatosAlquiler(idAlquiler);
+
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                          confirmButton: 'btn btn-success',
+                          cancelButton: 'btn btn-danger'
+                        },
+                        buttonsStyling: false
+                      })
+                      
+                    swalWithBootstrapButtons.fire({
+                        title: '¿Estás seguro?',
+                        text: "Tu información va a ser eliminada",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Eliminar',
+                        cancelButtonText: 'Cancelar',
+                        reverseButtons: true
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          swalWithBootstrapButtons.fire(
+                            'Borrado',
+                            'Has borrado el contenido',
+                            'success'
+                          )
+                          Controlador.eliminarDatosAlquiler(idAlquiler);
+                        } else if (
+                          result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                          swalWithBootstrapButtons.fire(
+                            'Cancelado',
+                            'No se ha eliminado nada',
+                            'error'
+                          )
+                        }
+                      })
+                    
                 })
 
                 const btnEditarDatosModal = document.getElementById('btnEditarDatosModal')
 
                 btnEditarDatosModal.addEventListener('click', () => {
-                    const idAlquiler = document.getElementById('idAlquiler').textContent;
-                    const tituloAlquiler = document.getElementById('tituloAlquiler').value;
-                    const disponibilidadAlquiler = document.getElementById('disponibilidadSelect').value;
-                    const bañosSelect = document.getElementById('bañosSelect').value;
-                    const huespedesSelect = document.getElementById('huespedesSelect').value;
-                    const cocinaSelect = document.getElementById("cocinaSelect").value;
-                    const descripcionAlquiler = document.getElementById("descripcionAlquiler").value;
-
-                    Controlador.getDatosApartamentoModificar(idAlquiler, tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler);
-
+                    const swalWithBootstrapButtons = Swal.mixin({
+                        customClass: {
+                          confirmButton: 'btn btn-success',
+                          cancelButton: 'btn btn-danger'
+                        },
+                        buttonsStyling: false
+                      })
+                      
+                    swalWithBootstrapButtons.fire({
+                        title: '¿Estás seguro?',
+                        text: "Tu información va a ser eliminada",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonText: 'Editar',
+                        cancelButtonText: 'Cancelar',
+                        reverseButtons: true
+                      }).then((result) => {
+                        if (result.isConfirmed) {
+                          swalWithBootstrapButtons.fire(
+                            'Borrado',
+                            'Has borrado el contenido',
+                            'success'
+                          )
+                          const idAlquiler = document.getElementById('idAlquiler').textContent;
+                          const tituloAlquiler = document.getElementById('tituloAlquiler').value;
+                          const disponibilidadAlquiler = document.getElementById('disponibilidadSelect').value;
+                          const bañosSelect = document.getElementById('bañosSelect').value;
+                          const huespedesSelect = document.getElementById('huespedesSelect').value;
+                          const cocinaSelect = document.getElementById("cocinaSelect").value;
+                          const descripcionAlquiler = document.getElementById("descripcionAlquiler").value;
+      
+                          Controlador.getDatosApartamentoModificar(idAlquiler, tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler);
+                        } else if (
+                          result.dismiss === Swal.DismissReason.cancel
+                        ) {
+                          swalWithBootstrapButtons.fire(
+                            'Cancelado',
+                            'No se ha eliminado nada',
+                            'error'
+                          )
+                        }
+                      })
+                   
+                
                 })
             });
 
@@ -302,6 +372,24 @@ const Vista = {
 
 
     },
+
+    mostrarMensajeError(mensaje) {
+        Swal.fire({
+          icon: 'error',
+          title: 'Algo salió mal',
+          text: mensaje,
+        })
+      },
+    
+      mostrarAlertaSatisfactorio(mensaje){
+        Swal.fire({
+          position: 'center',
+          icon: 'success',
+          title: mensaje,
+          showConfirmButton: false,
+          timer: 1500
+        })
+      },
 }
 
 
