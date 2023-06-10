@@ -149,48 +149,46 @@ const Vista = {
       </div>
     </div>
       `;
-
       const botonAbrirModal = contenido.querySelector('.boton-1');
       botonAbrirModal.addEventListener('click', () => {
         // Aquí puedes llenar el contenido del modal con la información específica
         const modal = document.getElementById('modal');
         const modalContent = modal.querySelector('.modal-contenido');
         modalContent.innerHTML = `
-        <div class="modal-cabecera">
-          <span class="btn-cerrar-modal cerrar-modal-informacion" id ="cerrarModal">&times;</span>
-        </div>
-
-        <div class="modal-cuerpo">
-          <div class="modal-cuerpo-imagen">
-             <img src="${element.imagen_alquiler}" alt="">
+          <div class="modal-cabecera">
+            <span class="btn-cerrar-modal cerrar-modal-informacion" id="cerrarModal">&times;</span>
           </div>
-
-          <div class="modal-detalles">
-            <div class="detalles">
-              <p class="descripcion"><i class="fa-solid fa-bed"></i> Huespedes: ${element.huespedes_alquiler}</p>
-              <p class="descripcion"><i class="fa-solid fa-toilet"></i> Baños: ${element.baños_alquiler}</p>
-              <p class="descripcion"><i class="fa-solid fa-kitchen-set"></i> Cocina: ${element.cocina_alquiler}</p>
-
+      
+          <div class="modal-cuerpo">
+            <div class="modal-cuerpo-imagen">
+              <img src="${element.imagen_alquiler}" alt="">
+            </div>
+      
+            <div class="modal-detalles">
+              <div class="detalles">
+                <p class="descripcion"><i class="fa-solid fa-bed"></i> Huespedes: ${element.huespedes_alquiler}</p>
+                <p class="descripcion"><i class="fa-solid fa-toilet"></i> Baños: ${element.baños_alquiler}</p>
+                <p class="descripcion"><i class="fa-solid fa-kitchen-set"></i> Cocina: ${element.cocina_alquiler}</p>
+              </div>
+            </div>
+      
+            <div class="modal-cuerpo-contenido">
+              <div class="modal-titulo">
+                <h2 class="modal__titulo">${element.nombre_alquiler}</h2>
+              </div>
+      
+              <div class="descripcion-casa">
+                <p>Descripcion:</p>
+                <p class="descripcion-casa__texto">${element.descripcion_alquiler}</p>
+              </div>
             </div>
           </div>
-
-          <div class="modal-cuerpo-contenido">
-            <div class="modal-titulo">
-              <h2 class="modal__titulo">${element.nombre_alquiler}</h2>
-            </div>
-
-            <div class="descripcion-casa">
-              <p>Descripcion:</p>
-              <p class="descripcion-casa__texto">${element.descripcion_alquiler}</p>                     
-            </div>
+      
+          <div class="modal-pie">
+            <button id="btnEliminarDatosModal">Contactar</button>
           </div>
-        </div>
-
-        <div class="modal-pie">
-          <button id="btnEliminarDatosModal">Contactar</button>
-      </div>
         `;
-
+      
         // Abre el modal
         modal.style.display = 'block';
         window.onclick = function (event) {
@@ -198,8 +196,14 @@ const Vista = {
             modal.style.display = "none";
           }
         }
-
+      
+        // Obtén el botón de cerrar modal y agrega el evento de clic
+        const botonCerrarModal = modal.querySelector('#cerrarModal');
+        botonCerrarModal.addEventListener('click', () => {
+          modal.style.display = 'none';
+        });
       });
+      
 
       contenidoAlquileres.append(contenido);
     };

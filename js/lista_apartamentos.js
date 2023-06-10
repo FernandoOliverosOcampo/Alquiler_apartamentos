@@ -104,7 +104,7 @@ const Vista = {
         const modalContent = modal.querySelector('.modal-contenido');
         modalContent.innerHTML = `
         <div class="modal-cabecera">
-          <span class="btn-cerrar-modal cerrar-modal-informacion">&times;</span>
+          <span class="btn-cerrar-modal cerrar-modal-informacion"id ="cerrarModal">&times;</span>
         </div>
 
         <div class="modal-cuerpo">
@@ -146,6 +146,11 @@ const Vista = {
             modal.style.display = "none";
           }
         }
+          // Obtén el botón de cerrar modal y agrega el evento de clic
+          const botonCerrarModal = modal.querySelector('#cerrarModal');
+          botonCerrarModal.addEventListener('click', () => {
+              modal.style.display = 'none';
+          });
 
       });
 

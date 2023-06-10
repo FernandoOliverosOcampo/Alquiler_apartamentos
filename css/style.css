@@ -15,7 +15,7 @@ button {
     height: 5vh;
     cursor: pointer;
     border: 1px solid transparent;
-    background-color: aquamarine;
+    background-color: #e0e0e0;
     font-size: 1vw;
     font-weight: 400;
     border-radius: 0.3vw;
@@ -330,7 +330,7 @@ li{
 }
 
 .top-right {
-    background-color: greenyellow;
+    background-color: rgb(40, 231, 40);
     position: absolute;
     top: 8px;
     width: 7vw;
@@ -533,7 +533,8 @@ li{
     display: grid;
     justify-content: center;
     height: 25vh;
-    background-color: #00e676;
+    border: 1px solid transparent;
+    background-color: #ffffff;
     justify-items: center;
     width: 70vw;
     align-items: center;
@@ -660,8 +661,8 @@ li{
 }
 .footer-contactus button{
     font-size: 1vw;
-    background: greenyellow;
-    border: none;
+    background: #e0e0e0;
+    border: 1px solid transparent;
     border-radius: .4rem;
     color: black;
     margin-top: 1.6rem;

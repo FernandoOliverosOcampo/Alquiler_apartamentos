@@ -215,6 +215,11 @@ const Vista = {
                         modal.style.display = "none";
                     }
                 }
+                // Obtén el botón de cerrar modal y agrega el evento de clic
+                const botonCerrarModal = modal.querySelector('#cerrarModal');
+                botonCerrarModal.addEventListener('click', () => {
+                    modal.style.display = 'none';
+                });
 
             });
 
