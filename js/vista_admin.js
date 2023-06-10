@@ -44,6 +44,7 @@ const Controlador = {
             console.log(err);
         }
     },
+
     transitionSmooth: function () {
         // Espera a que se cargue el DOM
         // Obtiene todos los elementos con la clase 'smooth-scroll'
@@ -65,7 +66,6 @@ const Controlador = {
             });
         }
     }
-
 }
 
 const Vista = {
@@ -74,14 +74,19 @@ const Vista = {
 
         for (let i = 0; i < 4 && i < data.length; i++) {
             const element = data[i];
+            if (element.disponibilidad_alquiler == "Disponible") {
+                var clase_css_disponibilidad = "top-right";
+            } else {
+                var clase_css_disponibilidad = "top-right2";
+            }
 
             const contenido = document.createElement('div');
             const listaAlquileres = document.getElementById("listaAlquileres");
             contenido.innerHTML = `
                 <div class="casa">
-
+                
                 <div class="casa-imagen">
-                    <div class="top-right">Disponible</div>
+                    <div class="${clase_css_disponibilidad}">${element.disponibilidad_alquiler}</div>
                     <img src="${element.imagen_alquiler}" class = "casa__imagen" alt="">
                 </div>
                 <div class="casa-contenido">
@@ -103,43 +108,114 @@ const Vista = {
                 </div>
                 `;
 
-            const ventanaEditarInformacion = contenido.querySelector('.boton-1');
-            ventanaEditarInformacion.addEventListener('click', () => {
+            const botonAbrirModal = contenido.querySelector('.boton-1');
+            botonAbrirModal.addEventListener('click', () => {
                 // Aquí puedes llenar el contenido del modal con la información específica
-                const ventanaEditarInformacion = document.getElementById('ventanaEditarInformacion');
-                console.log(ventanaEditarInformacion)
-                const editarInformacionVentana = ventanaEditarInformacion.querySelector('.editar-informacion-datos');
-                editarInformacionVentana.innerHTML = `
-                    <div class="imagen-casa">
+                const modal = document.getElementById('modal');
+                const modalContent = modal.querySelector('.modal-contenido');
+                modalContent.innerHTML = `
+
+                <div class="modal-cabecera">
+                    <div class="modal-cabecera-boton">
+                        <span class="btn-cerrar-modal cerrar-modal-informacion" id ="cerrarModal">&times;</span>
+                    </div>
+
+                    <div class="modal-cabecera-titulo">
+                    <h2>Editar apartamento</h2>
+                    </div>
+                    
+                </div>
+      
+                <div class="modal-cuerpo">
+                    <div class="modal-cuerpo-imagen">
                         <img src="${element.imagen_alquiler}" alt="">
                     </div>
+                          
+                    <div class="modal-cuerpo-contenido">
+                        <div class="principal">
+                            <div class="titulo-casa">
+                                <p>Titulo</p>
+                                <input type="text" class="titulo__casa" value = "${element.nombre_alquiler}">
+                            </div>
+                        </div>
+                        <div class="secundario">
+                            <div class="disponibilidad-casa">
+                                <p>Disponibilidad</p>
+                                <select name="cars" id="cars">
+                                <option selected="selected">${element.disponibilidad_alquiler}</option>
+                                <option value="Si">Disponible</option>
+                                <option value="No">No disponible</option>
+                                </select>
+                            </div>
 
-                    <div class="titulo-casa">
-                        <p>Titulo</p>
-                        <input type="text" class="titulo__casa" value = "${element.nombre_alquiler}">
-                    </div>
+                            <div class="huespedes-casa">
+                                <p>Número de Huespedes</p>
+                                <select name="cars" id="cars">
+                                    <option selected="selected">${element.huespedes_alquiler}</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="mas">10 o más</option>
+                                </select>
+                            </div>
 
-                    <div class="huespedes-casa">
-                        <p>Número de Huespedes</p>
-                        <input type="text" class="huespedes__casa" value "${element.huespedes_alquiler}">
-                    </div>
+                            <div class="baños-casa">
+                                <p>Número de baños</p>
+                                <select name="cars" id="cars">
+                                    <option selected="selected">${element.baños_alquiler}</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="mas">5 o más</option>
+                                </select>
+                            </div>
 
-                    <div class="habitaciones-casa">
-                        <p>Número de Habitaciones</p>
-                        <select name="cars" id="cars">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="mas">5 o más</option>
-                        </select>
-                    </div>
+                            <div class="cocina-casa">
+                                <p>Cocina</p>
+                                <select name="cars" id="cars">
+                                    <option selected="selected">${element.cocina_alquiler}</option>
+                                    <option value="Si">Si</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
 
-                    <div class="descripcion-casa">
-                        <p>Descripción</p>
-                        <textarea name="" id="" cols="60" rows="5">${element.descripcion_alquiler}</textarea>
+
+                        <div class="terceario">
+                            <div class="descripcion-casa">
+                                <p>Descripción</p>
+                                <textarea name="" id="" cols="60" rows="3">${element.descripcion_alquiler}</textarea>
+                            </div>
+                        </div>
+
+
+
                     </div>
+                </div>
+
+      
+              <div class="modal-pie">
+                <button id="btnEliminarDatosModal">Editar</button>
+                <button id="btnEliminarDatosModal">Eliminar</button>
+
+            </div>
                     `;
+
+                // Abre el modal
+                modal.style.display = 'block';
+                window.onclick = function (event) {
+                    if (event.target == modal) {
+                        modal.style.display = "none";
+                    }
+                }
+
             });
 
             listaAlquileres.append(contenido);
