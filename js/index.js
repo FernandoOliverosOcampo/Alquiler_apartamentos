@@ -68,49 +68,49 @@ const Controlador = {
       attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
       maxZoom: 25,
     }).addTo(map);
-    
+
     var marker = L.marker([11.240932, -74.199671]).addTo(map); // Coordenadas de la Catedral de Santa Marta
-    
+
     marker.bindPopup("<b>Catedral de Santa Marta</b><br>¡Bienvenido!").openPopup();
   },
 
-  transitionSmooth: function() {
+  transitionSmooth: function () {
     // Espera a que se cargue el DOM
-  // Obtiene todos los elementos con la clase 'smooth-scroll'
-  var smoothScrollLinks = document.getElementsByClassName('smooth-scroll');
-  
-  // Itera sobre los enlaces
-  for (var i = 0; i < smoothScrollLinks.length; i++) {
-    // Agrega un evento de clic a cada enlace
-    smoothScrollLinks[i].addEventListener('click', function(event) {
-      event.preventDefault(); // Evita el comportamiento predeterminado del enlace
-      
-      // Obtiene el destino del enlace a través del atributo href
-      var target = this.getAttribute('href');
-      
-      // Utiliza el método 'scrollIntoView' para desplazarse suavemente hacia el destino
-      document.querySelector(target).scrollIntoView({
-        behavior: 'smooth'
+    // Obtiene todos los elementos con la clase 'smooth-scroll'
+    var smoothScrollLinks = document.getElementsByClassName('smooth-scroll');
+
+    // Itera sobre los enlaces
+    for (var i = 0; i < smoothScrollLinks.length; i++) {
+      // Agrega un evento de clic a cada enlace
+      smoothScrollLinks[i].addEventListener('click', function (event) {
+        event.preventDefault(); // Evita el comportamiento predeterminado del enlace
+
+        // Obtiene el destino del enlace a través del atributo href
+        var target = this.getAttribute('href');
+
+        // Utiliza el método 'scrollIntoView' para desplazarse suavemente hacia el destino
+        document.querySelector(target).scrollIntoView({
+          behavior: 'smooth'
+        });
       });
-    });
-  }
+    }
   },
-  btn_whatsapp:function(){
+  btn_whatsapp: function () {
     var chatCircle = document.getElementById("chat-circle");
     var chatBox = document.getElementById("chat-box");
     var chatBoxToggle = document.getElementById("chat-box-toggle");
-    
-    chatCircle.addEventListener("click", function() {
-        chatBox.style.display = "block";
+
+    chatCircle.addEventListener("click", function () {
+      chatBox.style.display = "block";
     });
-    
-    chatBoxToggle.addEventListener("click", function() {
-        chatBox.style.display = "none";
+
+    chatBoxToggle.addEventListener("click", function () {
+      chatBox.style.display = "none";
     });
-    
+
 
   }
-  
+
 }
 
 
@@ -121,6 +121,11 @@ const Vista = {
 
     for (let i = 0; i < 4 && i < data.length; i++) {
       const element = data[i];
+      if (element.disponibilidad_alquiler == "Disponible") {
+        var clase_css_disponibilidad = "top-right";
+      } else {
+        var clase_css_disponibilidad = "top-right2";
+      }
 
       const contenido = document.createElement('div');
       const contenidoAlquileres = document.getElementById("contenidoAlquileres");
@@ -128,7 +133,7 @@ const Vista = {
       <div class="casa">
 
       <div class="casa-imagen">
-          <div class="top-right">Disponible</div>
+      <div class="${clase_css_disponibilidad}">${element.disponibilidad_alquiler}</div>
           <img src="${element.imagen_alquiler}" class = "casa__imagen" alt="">
       </div>
       <div class="casa-contenido">
@@ -186,10 +191,9 @@ const Vista = {
       
           <div class="modal-pie">
           <a href="https://wa.me/573152702656" target="_blank"><button id="btnContactoDatosModal">Contactar</button></a>
-            
           </div>
         `;
-      
+
         // Abre el modal
         modal.style.display = 'block';
         window.onclick = function (event) {
@@ -197,14 +201,14 @@ const Vista = {
             modal.style.display = "none";
           }
         }
-      
+
         // Obtén el botón de cerrar modal y agrega el evento de clic
         const botonCerrarModal = modal.querySelector('#cerrarModal');
         botonCerrarModal.addEventListener('click', () => {
           modal.style.display = 'none';
         });
       });
-      
+
 
       contenidoAlquileres.append(contenido);
     };
@@ -236,6 +240,33 @@ document.addEventListener('DOMContentLoaded', function () {
   Controlador.obtenerTodosAlquileres();
   Controlador.transitionSmooth();
   Controlador.btn_whatsapp();
+
+  const carouselSlide = document.querySelector(".carousel-slide");
+  const carouselImages = document.querySelectorAll(".carousel-slide img");
+  const prevButton = document.querySelector(".prev-btn");
+  const nextButton = document.querySelector(".next-btn");
+  
+  let counter = 0;
+  const slideWidth = carouselImages[0].clientWidth;
+  
+  // Mover el carrusel a la siguiente imagen
+  function nextSlide() {
+    if (counter >= carouselImages.length - 1) return;
+    counter++;
+    carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
+  }
+  
+  // Mover el carrusel a la imagen anterior
+  function prevSlide() {
+    if (counter <= 0) return;
+    counter--;
+    carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
+  }
+  
+  // Event listeners para los botones de siguiente y anterior
+  nextButton.addEventListener("click", nextSlide);
+  prevButton.addEventListener("click", prevSlide);
+  
 })
 
 

@@ -31,13 +31,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Hoja de estilos de Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
-
     <title>Alquiler de Apartamentos</title>
 </head>
 
 <body>
 
-     
+
     <header class="header">
         <!-- header inner -->
         <nav class="menu">
@@ -56,9 +55,12 @@
 
                 <ul class="opciones-menu-navegacion">
                     <li class="menu-navegacion__opcion"> <a href="index.html">Inicio</a> </li>
-                    <li class="menu-navegacion__opcion"> <a href="#about-us"  class="smooth-scroll">¿Quienes Somos?</a></li>
-                    <li class="menu-navegacion__opcion"> <a href="./paginas/alquiler_apartamentos.html" >Alquileres</a> </li>
-                    <li class="menu-navegacion__opcion"> <a href="#contactanos"  class="smooth-scroll">Contáctanos</a> </li>
+                    <li class="menu-navegacion__opcion"> <a href="#about-us" class="smooth-scroll">¿Quienes Somos?</a>
+                    </li>
+                    <li class="menu-navegacion__opcion"> <a href="./paginas/alquiler_apartamentos.html">Alquileres</a>
+                    </li>
+                    <li class="menu-navegacion__opcion"> <a href="#contactanos" class="smooth-scroll">Contáctanos</a>
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -93,13 +95,13 @@
         </div>
 
         <section class="contenedor-alquileres" id="contenidoAlquileres">
-            
+
             <div id="modal" class="modal">
                 <div class="modal-contenido">
                     <!-- Aquí puedes agregar el contenido específico del modal -->
                 </div>
             </div>
-<!--
+            <!--
             <div class="btn-vermas">
                 <a class="btn__vermas" href="paginas/alquiler_apartamentos.html"> Ver más </a>
             </div> -->
@@ -113,14 +115,15 @@
                     <div class="informacion-contenedor">
                         <div class="informacion-titulo">
                             <h2 class="informacion__titulo">¡Encuentranos!</h2>
-    
+
                         </div>
                         <div class="informacion-descripcion">
-                            <p class="informacion__descripcion">Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                            <p class="informacion__descripcion">Lorem, ipsum dolor sit amet consectetur adipisicing
+                                elit.
                                 Commodi nesciunt laborum exercitationem odio, similique nobis.</p>
                         </div>
                         <div class="informacion-imagen">
-                            <i class="fa-solid fa-map marca__mapa"></i>    
+                            <i class="fa-solid fa-map marca__mapa"></i>
                         </div>
                     </div>
 
@@ -142,6 +145,19 @@
                     enim.</p>
             </div>
 
+        </section>
+
+        <section>
+            <div class="carousel-container">
+                <div class="carousel-slide">
+                  <img src="https://i.postimg.cc/MXkPP2nx/casa1.jpg" alt="Imagen 1">
+                  <img src="https://i.postimg.cc/mZcT5YP6/casa2.jpg" alt="Imagen 2">
+                  <img src="https://i.postimg.cc/MXkPP2nx/casa1.jpg" alt="Imagen 3">
+                </div>
+              </div>
+              <button class="prev-btn">Anterior</button>
+              <button class="next-btn">Siguiente</button>
+              
         </section>
 
         <footer>
@@ -184,7 +200,7 @@
                     <a href="https://wa.me/573152702656" target="_blank">
                         <button>Enviar mensaje</button>
                     </a>
-                    
+
                 </div>
             </div>
             <div class="copywright-tag">&copyCopyright My Academy. All rights reserved</div>
@@ -203,12 +219,15 @@
             </div>
             <div class="chat-box-body">
                 <p class="mensaje">¡Hola! ¿En qué podemos ayudarte?</p>
-                <a href="https://wa.me/573152702656" target="_blank" class="btn btn-whatsapp"><i class="fa fa-whatsapp"></i>Contáctanos</a>
+                <a href="https://wa.me/573152702656" target="_blank" class="btn btn-whatsapp"><i
+                        class="fa fa-whatsapp"></i>Contáctanos</a>
             </div>
         </div>
     </div>
 
-
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script type="text/javascript" src="slick/slick.min.js"></script>
     <script src="https://kit.fontawesome.com/1a5bcd4a97.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 

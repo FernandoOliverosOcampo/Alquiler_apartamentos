@@ -1,26 +1,6 @@
 import config from './supabase/config.js';
 
 const Modelo = {
-
-    async insertarDatosContenido(nombreAlquiler, huespedesSelect, bañosAlquiler, cocinaAlquiler, descripcionAlquiler, imagenAlquiler) {
-        const datos_insertar = {
-            nombre_alquiler: nombreAlquiler,
-            huespedes_alquiler: huespedesSelect,
-            baños_alquiler: bañosAlquiler,
-            cocina_alquiler: cocinaAlquiler,
-            descripcion_alquiler: descripcionAlquiler,
-            imagen_alquiler: imagenAlquiler
-        }
-
-        const res = await axios({
-            method: "POST",
-            url: "https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/alquileres",
-            data: datos_insertar,
-            headers: config.headers
-        });
-        return res;
-    },
-
     async mostrarTodosAlquileres() {
 
         const res = await axios({
@@ -36,6 +16,24 @@ const Modelo = {
             method: "DELETE",
             url: "https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/alquileres?id=eq." + idAlquiler,
             headers: config.headers,
+        });
+        return res;
+    },
+
+    async insertarDatosAlquiler(tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler) {
+        const datos_insertar = {
+            nombre_alquiler: tituloAlquiler,
+            huespedes_alquiler: huespedesSelect,
+            baños_alquiler: bañosSelect,
+            cocina_alquiler: cocinaSelect,
+            disponibilidad_alquiler: disponibilidadAlquiler,
+            descripcion_alquiler: descripcionAlquiler,
+        }
+        const res = await axios({
+            method: "POST",
+            url: "https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/alquileres",
+            headers: config.headers,
+            data: datos_insertar
         });
         return res;
     },
@@ -73,19 +71,28 @@ const Controlador = {
         }
     },
 
-    /* MODAL INSERTAR */
     async getDatosApartamentoModificar(idAlquiler, tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler) {
         try {
             const res = await Modelo.modificarDatosAlquiler(idAlquiler, tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler);
             let mensaje = "Los datos fueron modificados"
             Vista.mostrarAlertaSatisfactorio(mensaje);
-
         } catch (err) {
             console.log(err);
         }
     },
 
-    /* MODAL ELIMINAR */
+    async insertarAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar) {
+
+        try {
+            const res = await Modelo.insertarDatosAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar);
+            let mensaje = "Los datos fueron insertados correctamente"
+            Vista.mostrarAlertaSatisfactorio(mensaje);
+            this.obtenerTodosAlquileres();
+        } catch (err) {
+            Vista.mostrarMensajeError(err);
+        }
+    },
+
     async eliminarDatosAlquiler(idAlquiler) {
         try {
             const res = await Modelo.eliminarAlquileres(idAlquiler);
@@ -93,6 +100,11 @@ const Controlador = {
         } catch (err) {
             console.log(err);
         }
+    },
+    
+    abrirModalAgregar: function () {
+        const modalAgregar = document.getElementById('modalAgregar');
+        modalAgregar.style.display = 'block';
     },
 
     transitionSmooth: function () {
@@ -122,11 +134,173 @@ const Controlador = {
 const Vista = {
 
     mostrarInfoContenido: function (data) {
+        const contenido = document.createElement('div');
+        const listaAlquileres = document.getElementById("listaAlquileres");
+        contenido.innerHTML = `
+            <div class="agregar-casa">
+                <button id="btnAgregar" class="boton-agregar">Agregar</button>
+            </div>
+            `;
+
+        const botonAbrirModal = contenido.querySelector('.boton-agregar');
+        botonAbrirModal.addEventListener('click', () => {
+            // Aquí puedes llenar el contenido del modal con la información específica
+            const modal = document.getElementById('modalAgregar');
+            const modalContent = modal.querySelector('.modal-contenido');
+            modalContent.innerHTML = `
+
+                <div class="modal-cabecera">
+                    <div class="modal-cabecera-boton">
+                        <span class="btn-cerrar-modal cerrar-modal-informacion" id ="cerrarModal">&times;</span>
+                    </div>
+
+                    <div class="modal-cabecera-titulo">
+                    <h2>Editar apartamento</h2>
+                        <p class="casa__id" id = "idAlquiler"></p>
+                    </div>
+                    
+                </div>
+      
+                <div class="modal-cuerpo">
+                    <div class="modal-cuerpo-imagen">
+                        <img src="" id = "imagenAlquiler" alt="">
+                    </div>
+                          
+                    <div class="modal-cuerpo-contenido">
+                        <div class="principal">
+                            <div class="titulo-casa">
+                                <p>Titulo</p>
+                                <input type="text" id = "tituloAlquiler" class="titulo__casa" value = "">
+                            </div>
+                        </div>
+                        <div class="secundario">
+                            <div class="disponibilidad-casa">
+                            <p>Disponibilidad</p>
+                            <select name="cars" id="disponibilidadSelect">
+                                <option selected="selected"></option>
+                                <option value="Disponible">Disponible</option>
+                                <option value="No disponible">No disponible</option>
+                            </select>
+                        </div>
+
+                        <div class="huespedes-casa">
+                            <p>Huespedes</p>
+                            <select name="cars" id="huespedesSelect">
+                                <option selected="selected"></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="mas">10 o más</option>
+                            </select>
+                        </div>
+
+                        <div class="baños-casa">
+                            <p>Baños</p>
+                            <select name="cars" id="bañosSelect">
+                                <option selected="selected"></option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="mas">5 o más</option>
+                            </select>
+                        </div>
+
+                        <div class="cocina-casa">
+                            <p>Cocina</p>
+                            <select name="cars" id="cocinaSelect">
+                                <option selected="selected"></option>
+                                <option value="Si">Si</option>
+                                <option value="No">No</option>
+                            </select>
+                        </div>
+                        </div>
+                        <div class="terceario">
+                            <div class="descripcion-casa">
+                                <p>Descripción</p>
+                                <textarea name="" id="descripcionAlquiler" cols="60" rows="3" ></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+      
+              <div class="modal-pie">
+                <button id="btnInsertarDatosModal">Insertar</button> 
+                <button id="btnEliminarDatosModal">Eliminar</button>
+
+            </div>
+            
+                    `;
+            modal.style.display = 'block';
+            window.onclick = function (event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+            // Obtén el botón de cerrar modal y agrega el evento de clic
+            const botonCerrarModal = modal.querySelector('#cerrarModal');
+            botonCerrarModal.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+
+                            
+            const btnInsertarDatosModal = document.getElementById('btnInsertarDatosModal');
+
+            btnInsertarDatosModal.addEventListener('click', () => {
+                const swalWithBootstrapButtons = Swal.mixin({
+                    customClass: {
+                        confirmButton: 'btn btn-success',
+                        cancelButton: 'btn btn-danger'
+                    },
+                    buttonsStyling: false
+                })
+
+                swalWithBootstrapButtons.fire({
+                    title: '¿Estás seguro?',
+                    text: "Deseas ingresar los datos a la BD",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonText: 'Aceptar',
+                    cancelButtonText: 'Cancelar',
+                    reverseButtons: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        const tituloAlquilerInsertar = document.getElementById('tituloAlquiler').value;
+                        const disponibilidadAlquilerInsertar = document.getElementById('disponibilidadSelect').value;
+                        const bañosSelectInsertar = document.getElementById('bañosSelect').value;
+                        const huespedesSelectInsertar = document.getElementById('huespedesSelect').value;
+                        const cocinaSelectInsertar = document.getElementById("cocinaSelect").value;
+                        const descripcionAlquilerInsertar = document.getElementById("descripcionAlquiler").value;
+
+                        Controlador.insertarAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar);
+                        modal.style.display = "none";
+                    } else if (
+                        result.dismiss === Swal.DismissReason.cancel
+                    ) {
+                        swalWithBootstrapButtons.fire(
+                            'Cancelado',
+                            'No se ha eliminado nada',
+                            'error'
+                        )
+                    }
+                })
 
 
-        for (let i = 0; i < 4 && i < data.length; i++) {
+            })
+
+        })
+
+        listaAlquileres.prepend(contenido);
+
+        for (let i = 0; i < 10 && i < data.length; i++) {
             const element = data[i];
-            console.log(element.disponibilidad_alquiler)
             if (element.disponibilidad_alquiler == "Disponible") {
                 var clase_css_disponibilidad = "top-right";
             } else {
@@ -227,7 +401,7 @@ const Vista = {
                                     <option value="2">2</option>
                                     <option value="3">3</option>
                                     <option value="4">4</option>
-                                    <option value="5 o más">5 o más</option>
+                                    <option value="mas">5 o más</option>
                                 </select>
                             </div>
 
@@ -286,7 +460,6 @@ const Vista = {
                             cancelButton: 'btn btn-danger'
                         },
                         buttonsStyling: false
-
                     })
 
                     swalWithBootstrapButtons.fire({
@@ -301,13 +474,10 @@ const Vista = {
                         if (result.isConfirmed) {
                             swalWithBootstrapButtons.fire(
                                 'Borrado',
-                                'Has borrado el contenido',
+                                'El registro ha sido eliminado',
                                 'success'
                             )
                             Controlador.eliminarDatosAlquiler(idAlquiler);
-                            // Cierra el modal después de confirmar
-                            const modal = document.getElementById('modal');
-                            modal.style.display = 'none';
                         } else if (
                             result.dismiss === Swal.DismissReason.cancel
                         ) {
@@ -317,11 +487,7 @@ const Vista = {
                                 'error'
                             )
                         }
-                        // Cierra el modal después de confirmar
-                        const modal = document.getElementById('modal');
-                        modal.style.display = 'none';
                     })
-
                 })
 
                 const btnEditarDatosModal = document.getElementById('btnEditarDatosModal')
@@ -337,15 +503,14 @@ const Vista = {
 
                     swalWithBootstrapButtons.fire({
                         title: '¿Estás seguro?',
-                        text: "Tu información va a ser eliminada",
+                        text: "El registro será modificado",
                         icon: 'warning',
                         showCancelButton: true,
-                        confirmButtonText: 'Editar',
+                        confirmButtonText: 'Aceptar',
                         cancelButtonText: 'Cancelar',
                         reverseButtons: true
                     }).then((result) => {
                         if (result.isConfirmed) {
-                           
                             const idAlquiler = document.getElementById('idAlquiler').textContent;
                             const tituloAlquiler = document.getElementById('tituloAlquiler').value;
                             const disponibilidadAlquiler = document.getElementById('disponibilidadSelect').value;
@@ -355,9 +520,7 @@ const Vista = {
                             const descripcionAlquiler = document.getElementById("descripcionAlquiler").value;
 
                             Controlador.getDatosApartamentoModificar(idAlquiler, tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler);
-                            // Cierra el modal después de confirmar
-                            const modal = document.getElementById('modal');
-                            modal.style.display = 'none';
+                            modal.style.display = "none";
                         } else if (
                             result.dismiss === Swal.DismissReason.cancel
                         ) {
@@ -367,13 +530,11 @@ const Vista = {
                                 'error'
                             )
                         }
-                        // Cierra el modal después de confirmar
-                        const modal = document.getElementById('modal');
-                        modal.style.display = 'none';
                     })
 
 
                 })
+
             });
 
             listaAlquileres.append(contenido);

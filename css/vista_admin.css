@@ -222,6 +222,7 @@ textarea{
     width: 10vw;
         padding: 0.5vw;
     margin-left: 0.5vw;
+    border: transparent;
 }
 
 .editar-informacion-datos .descripcion-casa textarea {

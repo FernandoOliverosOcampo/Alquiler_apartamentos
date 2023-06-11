@@ -24,9 +24,11 @@ button {
 	font-weight: 400;
 	border-radius: 0.3vw;
 }
-button:hover {
-	transform: scale(1.1);
- }
+button:hover{
+    transform: scale(1.1);
+}
+
+
 .contenido-pagina{
 	display: grid;
 	grid-template-areas: 
@@ -292,14 +294,7 @@ button:hover {
     font-weight: 600;
 }
 
-.lista-alquileres .casa-boton-info a {
-    text-decoration: none;
-    color: black;
-    background-color: aquamarine;
-    padding: 0.5vw;
-    border-radius: 0.3vw;
-    font-size: 1.1vw;
-}
+
 
 .lista-alquileres {
 	display: grid;
