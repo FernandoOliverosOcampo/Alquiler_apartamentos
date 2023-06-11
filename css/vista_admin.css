@@ -20,6 +20,10 @@ button {
     font-weight: 400;
     border-radius: 0.3vw;
 }
+button:hover {
+    transform: scale(1.1);
+}
+
 
 li {
     list-style: none;
