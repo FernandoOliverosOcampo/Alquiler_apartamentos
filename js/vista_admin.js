@@ -57,6 +57,19 @@ const Modelo = {
         });
         return res;
     },
+      insertarCasaImagen: async (imagenUrl) => {
+    const { data, error } = await supabaseClient
+      .from('casa_imagenes')
+      .insert([{ imagen_url: imageUrl }]);
+
+    if (error) {
+      console.error(error);
+      return null;
+    }
+
+    // Devuelve el ID del registro insertado
+    return data[0].id;
+  }
 
 }
 
@@ -92,6 +105,27 @@ const Controlador = {
             Vista.mostrarMensajeError(err);
         }
     },
+     insertarCasa: async (nombre, imagenUrl) => {
+    // Insertar datos en la tabla 'casa_imagenes' y obtener el ID generado
+    const imagenId = await Modelo.insertarCasaImagen(imagenUrl);
+
+    if (!imagenId) {
+      // Ocurrió un error al insertar en 'casa_imagenes'
+      return;
+    }
+
+    // Insertar datos en la tabla 'casas' utilizando el ID de imagen obtenido
+    const { data, error } = await supabaseClient
+      .from('casas')
+      .insert([{ nombre, imagen_id: imagenId }]);
+
+    if (error) {
+      console.error(error);
+      return;
+    }
+
+    console.log('Casa insertada exitosamente:', data[0]);
+  },
 
     async eliminarDatosAlquiler(idAlquiler) {
         try {
@@ -132,6 +166,16 @@ const Controlador = {
 }
 
 const Vista = {
+    onSubmitForm: async (event) => {
+    event.preventDefault();
+
+    const nombre = "// Obtener el valor del campo de nombre"
+    const imagenUrl = "// Obtener la URL de la imagen"
+
+    await Controlador.insertarCasa(nombre, imagenUrl);
+
+    // Lógica de actualización de la vista después de la inserción
+  },
 
     mostrarInfoContenido: function (data) {
         const contenido = document.createElement('div');
