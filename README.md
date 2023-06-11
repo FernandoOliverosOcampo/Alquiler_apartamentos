@@ -8,4 +8,4 @@ Pagina para una inmobiliaria que se encarga del alquiler de apartamentos en la c
 4. Contacto a través de sus diferentes redes sociales.
 5. Pagina administrativa para el control de los datos de los apartamentos.(CRUD)
 
-# Vista previa de la pagina en el siguiente enlace: https://fernandooliverosocampo.github.io/Alquiler_apartamentos/
+## Vista previa de la pagina en el siguiente enlace: https://fernandooliverosocampo.github.io/Alquiler_apartamentos/
