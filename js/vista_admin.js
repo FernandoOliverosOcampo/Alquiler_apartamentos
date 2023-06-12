@@ -20,6 +20,35 @@ const Modelo = {
         return res;
     },
 
+    async insertarImagenes(imagenes) {
+
+        const imagenIds = [];
+
+        for (const imagenUrl of imagenes) {
+
+            const body = {
+                imagen_url: imagenUrl
+            }
+      
+            try {
+              const response = await axios({
+                method: "POST",
+                url: "https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/imagenes",
+                headers: config.headers,
+                data: body
+            });
+                console.log(response)
+              //imagenIds.push(response.data.id_imagenes);
+            } catch (error) {
+              console.error(error);
+              // Si ocurre un error al insertar una imagen, puedes manejarlo según tus necesidades
+              // Por ejemplo, podrías lanzar una excepción y deshacer las inserciones anteriores
+            }
+          }
+          console.log(imagenIds);
+          return imagenIds;
+    },
+
     async insertarDatosAlquiler(tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler) {
         const datos_insertar = {
             nombre_alquiler: tituloAlquiler,
@@ -57,19 +86,6 @@ const Modelo = {
         });
         return res;
     },
-      insertarCasaImagen: async (imagenUrl) => {
-    const { data, error } = await supabaseClient
-      .from('casa_imagenes')
-      .insert([{ imagen_url: imageUrl }]);
-
-    if (error) {
-      console.error(error);
-      return null;
-    }
-
-    // Devuelve el ID del registro insertado
-    return data[0].id;
-  }
 
 }
 
@@ -94,10 +110,23 @@ const Controlador = {
         }
     },
 
-    async insertarAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar) {
+    async insertarImagenes(imagenes) {
 
         try {
-            const res = await Modelo.insertarDatosAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar);
+            const response_img = await Modelo.insertarImagenes(imagenes);
+            console.log(response_img)
+        } catch (err) {
+            console.log(err);
+        }
+    },
+
+    async insertarAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar, imagenAlquiler1, imagenAlquiler2, imagenAlquiler3) {
+
+        try {
+            const response_img = await Modelo.insertarDatosAlquiler(imagenAlquiler1, imagenAlquiler2, imagenAlquiler3);
+
+            const res = await Modelo.insertarDatosAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar, imagenAlquiler1, imagenAlquiler2, imagenAlquiler3);
+
             let mensaje = "Los datos fueron insertados correctamente"
             Vista.mostrarAlertaSatisfactorio(mensaje);
             this.obtenerTodosAlquileres();
@@ -105,27 +134,6 @@ const Controlador = {
             Vista.mostrarMensajeError(err);
         }
     },
-     insertarCasa: async (nombre, imagenUrl) => {
-    // Insertar datos en la tabla 'casa_imagenes' y obtener el ID generado
-    const imagenId = await Modelo.insertarCasaImagen(imagenUrl);
-
-    if (!imagenId) {
-      // Ocurrió un error al insertar en 'casa_imagenes'
-      return;
-    }
-
-    // Insertar datos en la tabla 'casas' utilizando el ID de imagen obtenido
-    const { data, error } = await supabaseClient
-      .from('casas')
-      .insert([{ nombre, imagen_id: imagenId }]);
-
-    if (error) {
-      console.error(error);
-      return;
-    }
-
-    console.log('Casa insertada exitosamente:', data[0]);
-  },
 
     async eliminarDatosAlquiler(idAlquiler) {
         try {
@@ -135,7 +143,7 @@ const Controlador = {
             console.log(err);
         }
     },
-    
+
     abrirModalAgregar: function () {
         const modalAgregar = document.getElementById('modalAgregar');
         modalAgregar.style.display = 'block';
@@ -166,16 +174,6 @@ const Controlador = {
 }
 
 const Vista = {
-    onSubmitForm: async (event) => {
-    event.preventDefault();
-
-    const nombre = "// Obtener el valor del campo de nombre"
-    const imagenUrl = "// Obtener la URL de la imagen"
-
-    await Controlador.insertarCasa(nombre, imagenUrl);
-
-    // Lógica de actualización de la vista después de la inserción
-  },
 
     mostrarInfoContenido: function (data) {
         const contenido = document.createElement('div');
@@ -199,15 +197,19 @@ const Vista = {
                     </div>
 
                     <div class="modal-cabecera-titulo">
-                    <h2>Editar apartamento</h2>
-                        <p class="casa__id" id = "idAlquiler"></p>
+                        <h2>Agregar nuevo alquiler</h2>
                     </div>
                     
                 </div>
       
                 <div class="modal-cuerpo">
-                    <div class="modal-cuerpo-imagen">
-                        <img src="" id = "imagenAlquiler" alt="">
+                    <div class="modal-cuerpo-imagen">   
+                        <div class="titulo-casa">
+                            <p>Agregar imagenes URL</p>
+                            <input type="text" id = "imagenAlquiler1" class="imagen__casa" value = "">
+                            <input type="text" id = "imagenAlquiler2" class="imagen__casa" value = "">
+                            <input type="text" id = "imagenAlquiler3" class="imagen__casa" value = "">
+                        </div>
                     </div>
                           
                     <div class="modal-cuerpo-contenido">
@@ -294,7 +296,7 @@ const Vista = {
                 modal.style.display = 'none';
             });
 
-                            
+
             const btnInsertarDatosModal = document.getElementById('btnInsertarDatosModal');
 
             btnInsertarDatosModal.addEventListener('click', () => {
@@ -317,13 +319,24 @@ const Vista = {
                 }).then((result) => {
                     if (result.isConfirmed) {
                         const tituloAlquilerInsertar = document.getElementById('tituloAlquiler').value;
+                        const imagenAlquiler1 = document.getElementById('imagenAlquiler1').value;
+                        const imagenAlquiler2 = document.getElementById('imagenAlquiler2').value;
+                        const imagenAlquiler3 = document.getElementById('imagenAlquiler3').value;
                         const disponibilidadAlquilerInsertar = document.getElementById('disponibilidadSelect').value;
                         const bañosSelectInsertar = document.getElementById('bañosSelect').value;
                         const huespedesSelectInsertar = document.getElementById('huespedesSelect').value;
                         const cocinaSelectInsertar = document.getElementById("cocinaSelect").value;
                         const descripcionAlquilerInsertar = document.getElementById("descripcionAlquiler").value;
 
-                        Controlador.insertarAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar);
+                        const imagenes = [
+                            document.getElementById('imagenAlquiler1').value,
+                            document.getElementById('imagenAlquiler2').value,
+                            document.getElementById('imagenAlquiler3').value
+                        ];
+
+
+                        Controlador.insertarImagenes(imagenes)
+                        //Controlador.insertarAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar, imagenAlquiler1, imagenAlquiler2, imagenAlquiler3);
                         modal.style.display = "none";
                     } else if (
                         result.dismiss === Swal.DismissReason.cancel

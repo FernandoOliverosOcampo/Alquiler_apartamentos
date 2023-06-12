@@ -6,7 +6,7 @@
 }
 
 body {
-    background-color: #f2f2f2;
+    background-color: #f7f7f7;
     scroll-behavior: smooth;
 }
 
@@ -339,7 +339,7 @@ li {
 }
 
 .top-right {
-    background-color: rgb(43, 255, 43);
+    background-color: rgb(40, 223, 40);
     position: absolute;
     top: 8px;
     width: 9vw;
@@ -367,7 +367,7 @@ li {
     justify-items: center;
     border-radius: 0.5vw;
     text-align: center;
-    background-color: #fff;
+    background-color: #ffffff;
     height: 70vh;
     box-shadow: 0px 0px 30px rgba(221, 221, 211, 0.3);
 }
@@ -483,7 +483,7 @@ li {
 }
 
 .modal-cuerpo .modal-cuerpo-imagen img {
-    height: 45vh;
+    height: 40vh;
     width: auto;
 }
 
@@ -608,9 +608,6 @@ li {
     justify-content: center;
     height: 60vh;
     align-items: center;
-
-
-
 }
 
 .acerca-de .acerca-de-contenido {
@@ -619,7 +616,6 @@ li {
     text-align: center;
 }
 
-
 /* FOOTER */
 .footer-container {
     background-color: #edebed8c;
@@ -627,7 +623,6 @@ li {
     justify-content: space-around;
     padding: 2vw 3vw;
 }
-
 
 .footer-logo {
 
