@@ -20,6 +20,30 @@ const Modelo = {
         return res;
     },
 
+    async obtenerImagenIdPorUrl (imagenUrl) {
+      
+        try {
+
+            const response = await axios({
+                method: "GET",
+                url: `https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/imagenes?imagen_url=eq.${imagenUrl}`,
+                headers: config.headers,
+            });
+
+          const registros = response.data;
+      
+          if (registros.length > 0) {
+            console.log(registros[0].id_imagenes)
+            return registros[0].id_imagenes;
+          } else {
+            return null;
+          }
+        } catch (error) {
+          console.error(error);
+          return null;
+        }
+      },
+
     async insertarImagenes(imagenes) {
 
         const imagenIds = [];
@@ -38,7 +62,8 @@ const Modelo = {
                 data: body
             });
                 console.log(response)
-              //imagenIds.push(response.data.id_imagenes);
+                const imagenId = await this.obtenerImagenIdPorUrl(imagenUrl);
+                console.log(imagenId);
             } catch (error) {
               console.error(error);
               // Si ocurre un error al insertar una imagen, puedes manejarlo según tus necesidades
@@ -49,7 +74,12 @@ const Modelo = {
           return imagenIds;
     },
 
+
+
     async insertarDatosAlquiler(tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler) {
+
+        const imagenIds = await Modelo.insertarImagenes(imagenUrls);
+
         const datos_insertar = {
             nombre_alquiler: tituloAlquiler,
             huespedes_alquiler: huespedesSelect,
