@@ -1,6 +1,7 @@
 import config from './supabase/config.js';
 
 const Modelo = {
+
     async mostrarTodosAlquileres() {
 
         const res = await axios({
@@ -20,29 +21,60 @@ const Modelo = {
         return res;
     },
 
-    async obtenerImagenIdPorUrl (imagenUrl) {
-      
+    async obtenerImagenIdPorUrl(imagenes) {
+
+        const body = []
+
+
+        for (const imagenUrl of imagenes) {
+
+            try {
+                const response = await axios({
+                    method: "GET",
+                    url: `https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/imagenes?imagen_url=eq.${imagenUrl}`,
+                    headers: config.headers,
+                });
+                const registros = response.data;
+                console.log(registros)
+                for (let index = 0; index < registros.length; index++) {
+                    body.push(registros[index].id_imagenes);   
+                }
+
+            } catch (error) {
+                console.error(error);
+                return null;
+            }
+        }
+
+        return body;
+
+    },
+
+    async obtenerCasaIdPorUrl(tituloAlquiler) {
+
         try {
 
             const response = await axios({
                 method: "GET",
-                url: `https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/imagenes?imagen_url=eq.${imagenUrl}`,
+                url: `https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/alquileres?nombre_alquiler=eq.${tituloAlquiler}`,
                 headers: config.headers,
             });
 
-          const registros = response.data;
-      
-          if (registros.length > 0) {
-            console.log(registros[0].id_imagenes)
-            return registros[0].id_imagenes;
-          } else {
-            return null;
-          }
+            const registros = response.data;
+
+            console.log(registros)
+
+            if (registros.length > 0) {
+                return registros[0].id;
+            } else {
+                return null;
+            }
         } catch (error) {
-          console.error(error);
-          return null;
+            console.error(error);
+            return null;
         }
-      },
+    },
+
 
     async insertarImagenes(imagenes) {
 
@@ -53,32 +85,28 @@ const Modelo = {
             const body = {
                 imagen_url: imagenUrl
             }
-      
+
             try {
-              const response = await axios({
-                method: "POST",
-                url: "https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/imagenes",
-                headers: config.headers,
-                data: body
-            });
-                console.log(response)
-                const imagenId = await this.obtenerImagenIdPorUrl(imagenUrl);
-                console.log(imagenId);
+                const response = await axios({
+                    method: "POST",
+                    url: "https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/imagenes",
+                    headers: config.headers,
+                    data: body
+                });
             } catch (error) {
-              console.error(error);
-              // Si ocurre un error al insertar una imagen, puedes manejarlo según tus necesidades
-              // Por ejemplo, podrías lanzar una excepción y deshacer las inserciones anteriores
+                console.error(error);
+                // Si ocurre un error al insertar una imagen, puedes manejarlo según tus necesidades
+                // Por ejemplo, podrías lanzar una excepción y deshacer las inserciones anteriores
             }
-          }
-          console.log(imagenIds);
-          return imagenIds;
+        }
+        return imagenIds;
     },
 
 
 
-    async insertarDatosAlquiler(tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler) {
+    async insertarDatosAlquiler(tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler, imagenUrls) {
 
-        const imagenIds = await Modelo.insertarImagenes(imagenUrls);
+        await Modelo.insertarImagenes(imagenUrls);
 
         const datos_insertar = {
             nombre_alquiler: tituloAlquiler,
@@ -88,13 +116,21 @@ const Modelo = {
             disponibilidad_alquiler: disponibilidadAlquiler,
             descripcion_alquiler: descripcionAlquiler,
         }
+
         const res = await axios({
             method: "POST",
             url: "https://ciyrwbjyrpspcejakytr.supabase.co/rest/v1/alquileres",
             headers: config.headers,
             data: datos_insertar
         });
+
+        const casaId = await Modelo.obtenerCasaIdPorUrl(tituloAlquiler);
+        const imagenIds = await Modelo.obtenerImagenIdPorUrl(imagenUrls);
+        console.log("eSTA ES LA ID DE LA CASA", casaId);
+        console.log("eSTA ES LA ID DE LA IMAGEN", imagenIds);
+
         return res;
+
     },
 
     async modificarDatosAlquiler(idAlquiler, tituloAlquiler, huespedesSelect, bañosSelect, cocinaSelect, disponibilidadAlquiler, descripcionAlquiler) {
@@ -150,18 +186,18 @@ const Controlador = {
         }
     },
 
-    async insertarAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar, imagenAlquiler1, imagenAlquiler2, imagenAlquiler3) {
+    async insertarAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar, imagenes) {
 
         try {
-            const response_img = await Modelo.insertarDatosAlquiler(imagenAlquiler1, imagenAlquiler2, imagenAlquiler3);
+            //const response_img = await Modelo.insertarDatosAlquiler(imagenAlquiler1, imagenAlquiler2, imagenAlquiler3);
 
-            const res = await Modelo.insertarDatosAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar, imagenAlquiler1, imagenAlquiler2, imagenAlquiler3);
+            const res = await Modelo.insertarDatosAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar, imagenes);
 
             let mensaje = "Los datos fueron insertados correctamente"
             Vista.mostrarAlertaSatisfactorio(mensaje);
             this.obtenerTodosAlquileres();
         } catch (err) {
-            Vista.mostrarMensajeError(err);
+            console.log(err);
         }
     },
 
@@ -365,8 +401,8 @@ const Vista = {
                         ];
 
 
-                        Controlador.insertarImagenes(imagenes)
-                        //Controlador.insertarAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar, imagenAlquiler1, imagenAlquiler2, imagenAlquiler3);
+                        //Controlador.insertarImagenes(imagenes)
+                        Controlador.insertarAlquiler(tituloAlquilerInsertar, huespedesSelectInsertar, bañosSelectInsertar, cocinaSelectInsertar, disponibilidadAlquilerInsertar, descripcionAlquilerInsertar, imagenes);
                         modal.style.display = "none";
                     } else if (
                         result.dismiss === Swal.DismissReason.cancel
@@ -385,9 +421,9 @@ const Vista = {
         })
 
         listaAlquileres.prepend(contenido);
-
-        for (let i = 0; i < 10 && i < data.length; i++) {
-            const element = data[i];
+        
+        data.forEach(element => {
+            
             if (element.disponibilidad_alquiler == "Disponible") {
                 var clase_css_disponibilidad = "top-right";
             } else {
@@ -625,7 +661,7 @@ const Vista = {
             });
 
             listaAlquileres.append(contenido);
-        };
+        });
 
 
     },
