@@ -234,39 +234,23 @@ const Vista = {
   }
 }
 
-
 document.addEventListener('DOMContentLoaded', function () {
   Controlador.mostrarMapas();
   Controlador.obtenerTodosAlquileres();
   Controlador.transitionSmooth();
   Controlador.btn_whatsapp();
 
-  const carouselSlide = document.querySelector(".carousel-slide");
-  const carouselImages = document.querySelectorAll(".carousel-slide img");
-  const prevButton = document.querySelector(".prev-btn");
-  const nextButton = document.querySelector(".next-btn");
-  
-  let counter = 0;
-  const slideWidth = carouselImages[0].clientWidth;
-  
-  // Mover el carrusel a la siguiente imagen
-  function nextSlide() {
-    if (counter >= carouselImages.length - 1) return;
-    counter++;
-    carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
-  }
-  
-  // Mover el carrusel a la imagen anterior
-  function prevSlide() {
-    if (counter <= 0) return;
-    counter--;
-    carouselSlide.style.transform = `translateX(${-slideWidth * counter}px)`;
-  }
-  
-  // Event listeners para los botones de siguiente y anterior
-  nextButton.addEventListener("click", nextSlide);
-  prevButton.addEventListener("click", prevSlide);
-  
+  var slider = tns({
+    container: '#mi-slider',
+    items: 2,
+    slideBy: "page",
+    mouseDrag: true,
+    swipeAngle: false,
+    speed: 400,
+    nav: false
+
+  });
+
 })
 
 
