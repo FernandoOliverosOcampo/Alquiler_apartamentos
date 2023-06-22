@@ -169,6 +169,46 @@ const Controlador = {
 
 const Vista = {
 
+  crearTarjetaCasa: function (element, i){
+    const contenido = document.createElement('div');
+    contenido.innerHTML = `
+    <div class="casa">
+
+    <div class="casa-imagen">
+      <div class="${Controlador.disponibilidad_alquiler(element.disponibilidad_alquiler)}">${element.disponibilidad_alquiler}</div>
+      <div id="casaImagenes-${i}" class="casa-imagenes-slider"></div>
+    </div>
+
+    <div class="casa-contenido">
+        <div class="casa-titulo">
+            <p class="casa__titulo">${element.nombre_alquiler}</p>
+        </div>
+
+        <div class="casa-info">
+            <p>${element.huespedes_alquiler} Huespedes</p>
+            <p>${element.cocina_alquiler} Cocina</p>
+            <p>${element.baños_alquiler} Baño</p>
+        </div>
+
+        <div class="casa-boton">
+            <button id="btnAbrirModal" class="btn-mas-informacion-casas">Mas información</button>
+        </div>
+
+    </div>
+  </div>
+    `;
+    return contenido;
+  },
+
+  agregarImagenesCasa: function (imagenesCortadas, imagenesContainer){
+    for (let index = 0; index < imagenesCortadas.length; index++) {
+      const imagen = document.createElement('img');
+      imagen.src = imagenesCortadas[index];
+      imagen.className = "casa__imagen";
+      imagenesContainer.appendChild(imagen);
+    }
+  },
+
   mostrarInfoContenido: function (data) {
 
     const contenidoAlquileres = document.getElementById("contenidoAlquileres");
@@ -178,44 +218,14 @@ const Vista = {
       const element = data[i];
       let imagenesAcortar = data[i].imagen_alquiler;
 
-      //Se crea cada casa junto con sus imagenes e información
-      const contenido = document.createElement('div');
-      contenido.innerHTML = `
-      <div class="casa">
-
-      <div class="casa-imagen">
-        <div class="${Controlador.disponibilidad_alquiler(element.disponibilidad_alquiler)}">${element.disponibilidad_alquiler}</div>
-        <div id="casaImagenes-${i}" class="casa-imagenes-slider"></div>
-      </div>
-
-      <div class="casa-contenido">
-          <div class="casa-titulo">
-              <p class="casa__titulo">${element.nombre_alquiler}</p>
-          </div>
-
-          <div class="casa-info">
-              <p>${element.huespedes_alquiler} Huespedes</p>
-              <p>${element.cocina_alquiler} Cocina</p>
-              <p>${element.baños_alquiler} Baño</p>
-          </div>
-
-          <div class="casa-boton">
-              <button id="btnAbrirModal" class="btn-mas-informacion-casas">Mas información</button>
-          </div>
-
-      </div>
-    </div>
-      `;
+      const contenido = this.crearTarjetaCasa(element,i);
 
       //Se agregan todas las imagenes a .casa-imagenes-slider (creado anteriormente)
-      const imagenesCortadas = Controlador.separar_imagenes(imagenesAcortar)
+      const imagenesCortadas = Controlador.separar_imagenes(imagenesAcortar);
       const imagenesContainer = contenido.querySelector(`#casaImagenes-${i}`);
-      for (let index = 0; index < imagenesCortadas.length; index++) {
-        const imagen = document.createElement('img');
-        imagen.src = imagenesCortadas[index];
-        imagen.className = "casa__imagen";
-        imagenesContainer.appendChild(imagen);
-      }
+
+      var agregarImagenesCasa = this.agregarImagenesCasa(imagenesCortadas, imagenesContainer)
+      this.agregarImagenesCasa
       
       //Se agrega el contenido del contenedor de "casas" para luego poder configurar el boton del modal
       contenidoAlquileres.appendChild(contenido);
