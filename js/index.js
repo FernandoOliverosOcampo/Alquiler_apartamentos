@@ -109,6 +109,7 @@ const Controlador = {
 
 
   },
+
   slider_lugar: function () {
 
     var swiper = new Swiper('.swiper-container', {
@@ -144,9 +145,24 @@ const Controlador = {
         },
       }
     });
-  }
+  },
 
+  disponibilidad_alquiler: function (disponibilidad){
+    if (disponibilidad == "Disponible") {
+      return "alquiler-disponible";
+    } else {
+      return "alquiler-no-disponible";
+    }
+  },
 
+  separar_imagenes: function (imagenesACortar){
+    let imagenesCortadas = imagenesACortar.split(",");
+    return imagenesCortadas
+  },
+
+  modalMasInformacionCasas: function (){
+
+  },
 }
 
 
@@ -157,25 +173,21 @@ const Vista = {
 
     const contenidoAlquileres = document.getElementById("contenidoAlquileres");
 
-
-    for (let i = 0; i < 4 && i < data.length; i++) {
+    //Muestra solamente 6 alquileres en la seccion de contenedor-alquileres
+    for (let i = 0; i < 6 && i < data.length; i++) {
       const element = data[i];
-      if (element.disponibilidad_alquiler == "Disponible") {
-        var clase_css_disponibilidad = "top-right";
-      } else {
-        var clase_css_disponibilidad = "top-right2";
-      }
-      var imagenes = data[i].imagen_alquiler;
-      var imagenesCortadas = imagenes.split(",");
+      let imagenesAcortar = data[i].imagen_alquiler;
 
+      //Se crea cada casa junto con sus imagenes e información
       const contenido = document.createElement('div');
       contenido.innerHTML = `
       <div class="casa">
 
       <div class="casa-imagen">
-        <div class="${clase_css_disponibilidad}">${element.disponibilidad_alquiler}</div>
+        <div class="${Controlador.disponibilidad_alquiler(element.disponibilidad_alquiler)}">${element.disponibilidad_alquiler}</div>
         <div id="casaImagenes-${i}" class="casa-imagenes-slider"></div>
       </div>
+
       <div class="casa-contenido">
           <div class="casa-titulo">
               <p class="casa__titulo">${element.nombre_alquiler}</p>
@@ -188,14 +200,15 @@ const Vista = {
           </div>
 
           <div class="casa-boton">
-              <button id="btnAbrirModal" class="boton-1">Mas información</button>
+              <button id="btnAbrirModal" class="btn-mas-informacion-casas">Mas información</button>
           </div>
 
       </div>
     </div>
       `;
 
-
+      //Se agregan todas las imagenes a .casa-imagenes-slider (creado anteriormente)
+      const imagenesCortadas = Controlador.separar_imagenes(imagenesAcortar)
       const imagenesContainer = contenido.querySelector(`#casaImagenes-${i}`);
       for (let index = 0; index < imagenesCortadas.length; index++) {
         const imagen = document.createElement('img');
@@ -204,11 +217,10 @@ const Vista = {
         imagenesContainer.appendChild(imagen);
       }
       
-
+      //Se agrega el contenido del contenedor de "casas" para luego poder configurar el boton del modal
       contenidoAlquileres.appendChild(contenido);
 
-
-      const botonAbrirModal = contenido.querySelector('.boton-1');
+      const botonAbrirModal = contenido.querySelector('.btn-mas-informacion-casas');
       botonAbrirModal.addEventListener('click', () => {
         // Aquí puedes llenar el contenido del modal con la información específica
         const modal = document.getElementById('modal');
@@ -284,7 +296,6 @@ const Vista = {
         });
       });
 
-
       contenidoAlquileres.append(contenido);
 
     }
@@ -298,7 +309,10 @@ const Vista = {
         mouseDrag: true,
         swipeAngle: false,
         speed: 200,
-        nav: false
+        nav: true,
+        controls: false,
+        navPosition: "bottom"
+
       });
     });
 
@@ -329,19 +343,5 @@ document.addEventListener('DOMContentLoaded', function () {
   Controlador.transitionSmooth();
   Controlador.btn_whatsapp();
   Controlador.slider_lugar();
-
-  var slider = tns({
-    container: '#mi-slider',
-    items: 2,
-    slideBy: "page",
-    mouseDrag: true,
-    swipeAngle: false,
-    speed: 400,
-    nav: false
-
-  });
-
-
-
 })
 

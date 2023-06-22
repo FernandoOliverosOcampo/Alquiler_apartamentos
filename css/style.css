@@ -4,7 +4,7 @@
 * {
     margin: 0;
     font-family: "Poppins", sans-serif;
-    box-sizing:border-box;
+    box-sizing: border-box;
 }
 
 body {
@@ -21,7 +21,7 @@ button {
     font-size: 1vw;
     font-weight: 400;
     border-radius: 0.3vw;
-    margin:10px;
+    margin: 10px;
 }
 
 button:hover {
@@ -30,6 +30,20 @@ button:hover {
 
 li {
     list-style: none;
+}
+
+.tns-nav>.tns-nav-active {
+    background: #999;
+}
+
+.tns-nav>[aria-controls] {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    margin: 0 5px;
+    border-radius: 50%;
+    background: #ddd;
+    border: 0;
 }
 
 .estructura-pagina {
@@ -237,7 +251,7 @@ li {
     justify-content: space-between;
     align-items: center;
     border-top-left-radius: 15px;
-   border-top-right-radius: 15px;
+    border-top-right-radius: 15px;
 }
 
 .chat-box-header h5 {
@@ -343,7 +357,7 @@ li {
     text-decoration: none;
 }
 
-.top-right {
+.alquiler-disponible {
     background-color: rgb(40, 223, 40);
     position: absolute;
     top: 8px;
@@ -353,7 +367,7 @@ li {
     font-size: 1.2vw;
 }
 
-.top-right2 {
+.alquiler-no-disponible {
     background-color: rgb(196, 8, 8);
     position: absolute;
     top: 8px;
@@ -407,7 +421,7 @@ li {
     font-weight: 600;
 }
 
-.contenedor-alquileres .tns-ovh{
+.contenedor-alquileres .tns-ovh {
     width: 30vw;
     height: 40vh;
 }
@@ -419,7 +433,7 @@ li {
     height: 40vh;
 }
 
-.contenedor-alquileres .imagenes-prueba img{
+.contenedor-alquileres .imagenes-prueba img {
     width: 30vw;
     height: 40vh;
 }
@@ -631,7 +645,7 @@ li {
     text-align: center;
 }
 
-.carrousel-imagenes{
+.carrousel-imagenes {
     grid-area: "carrousel-imagenes";
     display: grid;
     justify-content: center;
@@ -642,9 +656,9 @@ li {
     height: auto;
     overflow: hidden;
     position: relative;
-  }
-  
-  .carousel-slide {
+}
+
+.carousel-slide {
     display: flex;
     width: 100%;
     height: 100%;
@@ -655,45 +669,46 @@ li {
     -webkit-justify-content: flex-start;
     -ms-flex-pack: start;
     justify-content: flex-start;
-  }
-  
-  .slider img {
-    object-fit: cover;
-  }
+}
 
-  
-  .prev-btn {
+.slider img {
+    object-fit: cover;
+}
+
+
+.prev-btn {
     left: 10px;
-  }
-  
-  .next-btn {
+}
+
+.next-btn {
     right: 10px;
-  }
-  /*CONTENIDO LUGAR*/
- 
-.container-lugares-slider{
+}
+
+/*CONTENIDO LUGAR*/
+
+.container-lugares-slider {
     background: #eee;
     display: flex;
-    align-items:center;
-    justify-content:center;
+    align-items: center;
+    justify-content: center;
     min-height: 90vh;
     overflow: hidden;
     position: relative;
-  }
-  
-  
-  .container-lugares{
-    width:100%;
+}
+
+
+.container-lugares {
+    width: 100%;
     padding: 10px 40px;
-  }
-  
-  .container-lugares .swiper-container {
-   height: 100%;
-   width: 100%;
-   overflow: hidden;
-  }
-  
-  .container-lugares .swiper-slide {
+}
+
+.container-lugares .swiper-container {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+.container-lugares .swiper-slide {
     position: relative;
     text-align: center;
     font-size: 18px;
@@ -701,43 +716,48 @@ li {
     border-radius: 15px;
     text-align: start;
     box-shadow: 0px 4px 4px rgba(196, 196, 196, 0.25);
-   
-  }
-  
-  .container-lugares .swiper-slide img{
+
+}
+
+.container-lugares .swiper-slide img {
     display: block;
-     width: 100%;
-     height: 180px;
-     object-fit: cover;
-     
-  
-  }
-  .titulo__cartas{
-    text-align:center;
-    padding:10px;
-    text-transform:uppercase;
-  }
-  .contenido-slider{
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
-  }
-  .contenido-slider .contenido-texto{
-    width:auto;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+
+
+}
+
+.titulo__cartas {
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
+}
+
+.contenido-slider {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.contenido-slider .contenido-texto {
+    width: auto;
     height: 30vh;
-    margin:15px;
-  }
-  .contenido-texto p{
-    font-size:17px;
-    text-align:justify;
-  }
-  .boton-slider{
+    margin: 15px;
+}
+
+.contenido-texto p {
+    font-size: 17px;
+    text-align: justify;
+}
+
+.boton-slider {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  
+}
+
 
 
 /* FOOTER */
@@ -869,5 +889,3 @@ li {
         font-size: 2.5rem;
     }
 }
-
-  
