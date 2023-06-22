@@ -53,7 +53,6 @@ const Controlador = {
   async obtenerTodosAlquileres() {
     try {
       const response = await Modelo.mostrarTodosAlquileres();
-      console.log(response.data);
       Vista.mostrarInfoContenido(response.data);
     } catch (err) {
       console.log(err);
@@ -110,43 +109,43 @@ const Controlador = {
 
 
   },
-  slider_lugar: function(){
-    
-var swiper = new Swiper('.swiper-container', {
-	navigation: {
-	  nextEl: '.swiper-button-next',
-	  prevEl: '.swiper-button-prev'
-	},
-	slidesPerView: 1,
-	spaceBetween: 10,
-	// init: false,
-	pagination: {
-	  el: '.swiper-pagination',
-	  clickable: true,
-	},
+  slider_lugar: function () {
 
-  
-	breakpoints: {
-	  620: {
-		slidesPerView: 1,
-		spaceBetween: 20,
-	  },
-	  680: {
-		slidesPerView: 2,
-		spaceBetween: 40,
-	  },
-	  920: {
-		slidesPerView: 3,
-		spaceBetween: 40,
-	  },
-	  1240: {
-		slidesPerView: 4,
-		spaceBetween: 50,
-	  },
-	} 
+    var swiper = new Swiper('.swiper-container', {
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+      },
+      slidesPerView: 1,
+      spaceBetween: 10,
+      // init: false,
+      pagination: {
+        el: '.swiper-pagination',
+        clickable: true,
+      },
+
+
+      breakpoints: {
+        620: {
+          slidesPerView: 1,
+          spaceBetween: 20,
+        },
+        680: {
+          slidesPerView: 2,
+          spaceBetween: 40,
+        },
+        920: {
+          slidesPerView: 3,
+          spaceBetween: 40,
+        },
+        1240: {
+          slidesPerView: 4,
+          spaceBetween: 50,
+        },
+      }
     });
   }
- 
+
 
 }
 
@@ -156,6 +155,9 @@ const Vista = {
 
   mostrarInfoContenido: function (data) {
 
+    const contenidoAlquileres = document.getElementById("contenidoAlquileres");
+
+
     for (let i = 0; i < 4 && i < data.length; i++) {
       const element = data[i];
       if (element.disponibilidad_alquiler == "Disponible") {
@@ -163,15 +165,16 @@ const Vista = {
       } else {
         var clase_css_disponibilidad = "top-right2";
       }
+      var imagenes = data[i].imagen_alquiler;
+      var imagenesCortadas = imagenes.split(",");
 
       const contenido = document.createElement('div');
-      const contenidoAlquileres = document.getElementById("contenidoAlquileres");
       contenido.innerHTML = `
       <div class="casa">
 
       <div class="casa-imagen">
-      <div class="${clase_css_disponibilidad}">${element.disponibilidad_alquiler}</div>
-          <img src="${element.imagen_alquiler}" class = "casa__imagen" alt="">
+        <div class="${clase_css_disponibilidad}">${element.disponibilidad_alquiler}</div>
+        <div id="casaImagenes-${i}" class="casa-imagenes-slider"></div>
       </div>
       <div class="casa-contenido">
           <div class="casa-titulo">
@@ -191,6 +194,20 @@ const Vista = {
       </div>
     </div>
       `;
+
+
+      const imagenesContainer = contenido.querySelector(`#casaImagenes-${i}`);
+      for (let index = 0; index < imagenesCortadas.length; index++) {
+        const imagen = document.createElement('img');
+        imagen.src = imagenesCortadas[index];
+        imagen.className = "casa__imagen";
+        imagenesContainer.appendChild(imagen);
+      }
+      
+
+      contenidoAlquileres.appendChild(contenido);
+
+
       const botonAbrirModal = contenido.querySelector('.boton-1');
       botonAbrirModal.addEventListener('click', () => {
         // Aquí puedes llenar el contenido del modal con la información específica
@@ -202,9 +219,10 @@ const Vista = {
           </div>
       
           <div class="modal-cuerpo">
-            <div class="modal-cuerpo-imagen">
-              <img src="${element.imagen_alquiler}" alt="">
-            </div>
+            <div class="modal-cuerpo-imagen" id="modalImagenes">
+              <!-- Agrega un contenedor para el slider -->
+              <div class="modal-imagenes-slider"></div>
+          </div>
       
             <div class="modal-detalles">
               <div class="detalles">
@@ -231,6 +249,26 @@ const Vista = {
           </div>
         `;
 
+        // Agrega las imágenes al contenedor del slider
+      const imagenesContainer = modalContent.querySelector('.modal-imagenes-slider');
+      for (let index = 0; index < imagenesCortadas.length; index++) {
+        const imagen = document.createElement('img');
+        imagen.src = imagenesCortadas[index];
+        imagen.className = "casa__imagen";
+        imagenesContainer.appendChild(imagen);
+      }
+
+      // Inicializa el slider
+      const slider = tns({
+        container: imagenesContainer,
+        items: 1,
+        slideBy: "page",
+        mouseDrag: true,
+        swipeAngle: false,
+        speed: 400,
+        nav: false
+      });
+
         // Abre el modal
         modal.style.display = 'block';
         window.onclick = function (event) {
@@ -248,7 +286,21 @@ const Vista = {
 
 
       contenidoAlquileres.append(contenido);
-    };
+
+    }
+
+    const sliders = document.querySelectorAll('.casa-imagenes-slider');
+    sliders.forEach((sliderContainer) => {
+      tns({
+        container: sliderContainer,
+        items: 1,
+        slideBy: "page",
+        mouseDrag: true,
+        swipeAngle: false,
+        speed: 200,
+        nav: false
+      });
+    });
 
 
   },
@@ -289,7 +341,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
   });
 
-  
+
 
 })
 

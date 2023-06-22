@@ -40,7 +40,7 @@ li {
         "mapa"
         "carrousel-imagenes"
         "acerca_de";
-    grid-template-rows: 1fr;
+    grid-template-rows: auto;
     row-gap: 2vw;
 }
 
@@ -407,9 +407,19 @@ li {
     font-weight: 600;
 }
 
+.contenedor-alquileres .tns-ovh{
+    width: 30vw;
+    height: 40vh;
+}
+
 .contenedor-alquileres .casa .casa-imagen img {
     max-height: 50vh;
     max-width: 80vw;
+    width: 30vw;
+    height: 40vh;
+}
+
+.contenedor-alquileres .imagenes-prueba img{
     width: 30vw;
     height: 40vh;
 }
