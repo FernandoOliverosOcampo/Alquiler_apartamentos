@@ -53,7 +53,7 @@ const Controlador = {
   async obtenerTodosAlquileres() {
     try {
       const response = await Modelo.mostrarTodosAlquileres();
-      Vista.mostrarInfoContenido(response.data);
+      Vista.mostrarPropiedades(response.data);
     } catch (err) {
       console.log(err);
       Vista.mostrarMensajeError(err);
@@ -94,6 +94,7 @@ const Controlador = {
       });
     }
   },
+
   btn_whatsapp: function () {
     var chatCircle = document.getElementById("chat-circle");
     var chatBox = document.getElementById("chat-box");
@@ -147,7 +148,7 @@ const Controlador = {
     });
   },
 
-  disponibilidad_alquiler: function (disponibilidad){
+  disponibilidad_alquiler: function (disponibilidad) {
     if (disponibilidad == "Disponible") {
       return "alquiler-disponible";
     } else {
@@ -155,23 +156,21 @@ const Controlador = {
     }
   },
 
-  separar_imagenes: function (imagenesACortar){
+  separar_imagenes: function (imagenesACortar) {
     let imagenesCortadas = imagenesACortar.split(",");
     return imagenesCortadas
   },
 
-  modalMasInformacionCasas: function (){
 
-  },
 }
 
 
 
 const Vista = {
 
-  crearTarjetaCasa: function (element, i){
-    const contenido = document.createElement('div');
-    contenido.innerHTML = `
+  crearTarjetaCasa: function (element, i, imagenesCortadas) {
+    const contenidoAlquileres = document.createElement('div');
+    contenidoAlquileres.innerHTML = `
     <div class="casa">
 
     <div class="casa-imagen">
@@ -197,10 +196,14 @@ const Vista = {
     </div>
   </div>
     `;
-    return contenido;
+
+    //Se agregan todas las imagenes a .casa-imagenes-slider (creado anteriormente)
+    const imagenesContainer = contenidoAlquileres.querySelector(`#casaImagenes-${i}`);
+    this.agregarImagenesCasa(imagenesCortadas, imagenesContainer)
+    return contenidoAlquileres;
   },
 
-  agregarImagenesCasa: function (imagenesCortadas, imagenesContainer){
+  agregarImagenesCasa: function (imagenesCortadas, imagenesContainer) {
     for (let index = 0; index < imagenesCortadas.length; index++) {
       const imagen = document.createElement('img');
       imagen.src = imagenesCortadas[index];
@@ -209,124 +212,134 @@ const Vista = {
     }
   },
 
-  mostrarInfoContenido: function (data) {
+  llenarModal: function (element) {
+    // Aquí puedes llenar el contenido del modal con la información específica
+    const modal = document.getElementById('modal');
+    const modalContent = modal.querySelector('.modal-contenido');
 
+    modalContent.innerHTML = `
+        <div class="modal-cabecera">
+          <span class="btn-cerrar-modal cerrar-modal-informacion" id="cerrarModal">&times;</span>
+        </div>
+    
+        <div class="modal-cuerpo">
+          <div class="modal-cuerpo-imagen" id="modalImagenes">
+            <!-- Agrega un contenedor para el slider -->
+            <div class="modal-imagenes-slider"></div>
+        </div>
+    
+          <div class="modal-detalles">
+            <div class="detalles">
+              <p class="descripcion"><i class="fa-solid fa-bed"></i> Huespedes: ${element.huespedes_alquiler}</p>
+              <p class="descripcion"><i class="fa-solid fa-toilet"></i> Baños: ${element.baños_alquiler}</p>
+              <p class="descripcion"><i class="fa-solid fa-kitchen-set"></i> Cocina: ${element.cocina_alquiler}</p>
+            </div>
+          </div>
+    
+          <div class="modal-cuerpo-contenido">
+            <div class="modal-titulo">
+              <h2 class="modal__titulo">${element.nombre_alquiler}</h2>
+            </div>
+    
+            <div class="descripcion-casa">
+              <p>Descripcion:</p>
+              <p class="descripcion-casa__texto">${element.descripcion_alquiler}</p>
+            </div>
+          </div>
+        </div>
+    
+        <div class="modal-pie">
+        <a href="https://wa.me/573152702656" target="_blank"><button id="btnContactoDatosModal">Contactar</button></a>
+        </div>
+    `;
+    return modalContent
+  },
+
+  abrirModal: function(){
+    modal.style.display = 'block';
+    window.onclick = function (event) {
+      if (event.target == modal) {
+        modal.style.display = "none";
+      }
+    }
+  },
+
+  cerrarModal: function(){
+    const botonCerrarModal = modal.querySelector('#cerrarModal');
+    botonCerrarModal.addEventListener('click', () => {
+      modal.style.display = 'none';
+    });
+  },
+
+  agregarImagenesModal: function (imagenesContainer, imagenesSeparadas) {
+    // Agrega las imágenes al contenedor del slider
+    for (let index = 0; index < imagenesSeparadas.length; index++) {
+      const imagen = document.createElement('img');
+      imagen.src = imagenesSeparadas[index];
+      imagen.className = "casa__imagen";
+      imagenesContainer.appendChild(imagen);
+    }
+  },
+
+  carrouselImagenes: function (container) {
+    tns({
+      container: container,
+      items: 1,
+      slideBy: "page",
+      mouseDrag: true,
+      swipeAngle: false,
+      speed: 400,
+      nav: true,
+      controls: false,
+      navPosition: "bottom"
+    });
+    return tns
+  },
+
+  mostrarPropiedades: function (data) {
+
+    //Contenedor donde se mostrarán las imagenes
     const contenidoAlquileres = document.getElementById("contenidoAlquileres");
 
     //Muestra solamente 6 alquileres en la seccion de contenedor-alquileres
     for (let i = 0; i < 6 && i < data.length; i++) {
       const element = data[i];
-      let imagenesAcortar = data[i].imagen_alquiler;
 
-      const contenido = this.crearTarjetaCasa(element,i);
+      //Se guardan todas las imagenes
+      let imaganesPorSeparar = data[i].imagen_alquiler;
 
-      //Se agregan todas las imagenes a .casa-imagenes-slider (creado anteriormente)
-      const imagenesCortadas = Controlador.separar_imagenes(imagenesAcortar);
-      const imagenesContainer = contenido.querySelector(`#casaImagenes-${i}`);
+      //Se retorna todas las imagenes separadas dentro de un array
+      let imagenesSeparadas = Controlador.separar_imagenes(imaganesPorSeparar)
 
-      var agregarImagenesCasa = this.agregarImagenesCasa(imagenesCortadas, imagenesContainer)
-      this.agregarImagenesCasa
-      
-      //Se agrega el contenido del contenedor de "casas" para luego poder configurar el boton del modal
-      contenidoAlquileres.appendChild(contenido);
+      //crea toda la estructura de la casa incluyendo el botón que abre el modal (ventana emergente)
+      const contenidoPropiedad = this.crearTarjetaCasa(element, i, imagenesSeparadas);
 
-      const botonAbrirModal = contenido.querySelector('.btn-mas-informacion-casas');
+      //Busca el botón que abre el modal (creado dentro de la estructura de la casa)
+      const botonAbrirModal = contenidoPropiedad.querySelector('.btn-mas-informacion-casas');
+
       botonAbrirModal.addEventListener('click', () => {
-        // Aquí puedes llenar el contenido del modal con la información específica
-        const modal = document.getElementById('modal');
-        const modalContent = modal.querySelector('.modal-contenido');
-        modalContent.innerHTML = `
-          <div class="modal-cabecera">
-            <span class="btn-cerrar-modal cerrar-modal-informacion" id="cerrarModal">&times;</span>
-          </div>
-      
-          <div class="modal-cuerpo">
-            <div class="modal-cuerpo-imagen" id="modalImagenes">
-              <!-- Agrega un contenedor para el slider -->
-              <div class="modal-imagenes-slider"></div>
-          </div>
-      
-            <div class="modal-detalles">
-              <div class="detalles">
-                <p class="descripcion"><i class="fa-solid fa-bed"></i> Huespedes: ${element.huespedes_alquiler}</p>
-                <p class="descripcion"><i class="fa-solid fa-toilet"></i> Baños: ${element.baños_alquiler}</p>
-                <p class="descripcion"><i class="fa-solid fa-kitchen-set"></i> Cocina: ${element.cocina_alquiler}</p>
-              </div>
-            </div>
-      
-            <div class="modal-cuerpo-contenido">
-              <div class="modal-titulo">
-                <h2 class="modal__titulo">${element.nombre_alquiler}</h2>
-              </div>
-      
-              <div class="descripcion-casa">
-                <p>Descripcion:</p>
-                <p class="descripcion-casa__texto">${element.descripcion_alquiler}</p>
-              </div>
-            </div>
-          </div>
-      
-          <div class="modal-pie">
-          <a href="https://wa.me/573152702656" target="_blank"><button id="btnContactoDatosModal">Contactar</button></a>
-          </div>
-        `;
+        const modalContent = this.llenarModal(element);
+        const imagenesModal = modalContent.querySelector('.modal-imagenes-slider');
+        this.agregarImagenesModal(imagenesModal, imagenesSeparadas);
 
-        // Agrega las imágenes al contenedor del slider
-      const imagenesContainer = modalContent.querySelector('.modal-imagenes-slider');
-      for (let index = 0; index < imagenesCortadas.length; index++) {
-        const imagen = document.createElement('img');
-        imagen.src = imagenesCortadas[index];
-        imagen.className = "casa__imagen";
-        imagenesContainer.appendChild(imagen);
-      }
-
-      // Inicializa el slider
-      const slider = tns({
-        container: imagenesContainer,
-        items: 1,
-        slideBy: "page",
-        mouseDrag: true,
-        swipeAngle: false,
-        speed: 400,
-        nav: false
-      });
+        // Inicializa el slider
+        this.carrouselImagenes(imagenesModal);
 
         // Abre el modal
-        modal.style.display = 'block';
-        window.onclick = function (event) {
-          if (event.target == modal) {
-            modal.style.display = "none";
-          }
-        }
+        this.abrirModal();
 
         // Obtén el botón de cerrar modal y agrega el evento de clic
-        const botonCerrarModal = modal.querySelector('#cerrarModal');
-        botonCerrarModal.addEventListener('click', () => {
-          modal.style.display = 'none';
-        });
+        this.cerrarModal();
+        
       });
 
-      contenidoAlquileres.append(contenido);
-
+      contenidoAlquileres.append(contenidoPropiedad);
     }
 
     const sliders = document.querySelectorAll('.casa-imagenes-slider');
-    sliders.forEach((sliderContainer) => {
-      tns({
-        container: sliderContainer,
-        items: 1,
-        slideBy: "page",
-        mouseDrag: true,
-        swipeAngle: false,
-        speed: 200,
-        nav: true,
-        controls: false,
-        navPosition: "bottom"
-
-      });
+    sliders.forEach((imagenesPropiedades) => {
+      this.carrouselImagenes(imagenesPropiedades);
     });
-
-
   },
   /* PAGINA PRINCIPAL */
 
