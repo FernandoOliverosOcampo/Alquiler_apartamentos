@@ -242,8 +242,15 @@ const Vista = {
             </div>
     
             <div class="descripcion-casa">
-              <p>Descripcion:</p>
-              <p class="descripcion-casa__texto">${element.descripcion_alquiler}</p>
+
+              <div class="descripcion-casa-subtitulo">
+                <p>Descripcion:</p>
+              </div>
+
+              <div class="descripcion-casa-parrafo">
+                <p>${element.descripcion_alquiler}</p>
+              </div>
+
             </div>
           </div>
         </div>
@@ -286,6 +293,7 @@ const Vista = {
       container: container,
       items: 1,
       slideBy: "page",
+      navAsThumbnails: true,
       mouseDrag: true,
       swipeAngle: false,
       speed: 400,

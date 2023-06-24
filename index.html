@@ -30,13 +30,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
-    
-     <!-- Link Swiper's CSS -->
+
+    <!-- Link Swiper's CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
     <!-- Hoja de estilos de Leaflet -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tiny-slider/2.9.4/tiny-slider.css">
-    <title>Alquiler de Apartamentos</title>
+    <title>Apartamentos Salazar</title>
 </head>
 
 <body>
@@ -49,7 +49,8 @@
 
                 <div class="menu-titulo">
 
-                    <p class="titulo__menu"><i class="fa-solid fa-sign-hanging fa-2x"></i>Alquiler de Apartamentos</p>
+                    <img src="imagenes/LOGO TOURS SALAZAR.webp" class="logo__inmobilaria" alt="">
+                    <p class="titulo__menu">Tours Salazar Santa Marta</p>
                 </div>
                 <ul class="menu-opciones">
                     <li class="menu__opcion"> <i class="fa fa-map-marker"></i></a></li>
@@ -70,9 +71,6 @@
             </div>
         </nav>
 
-        <nav class="menu-navegacion">
-
-        </nav>
     </header>
 
     <div class="estructura-pagina">
@@ -87,10 +85,10 @@
                         <div class="container">
                             <div class="carousel-caption relative">
                                 <div class="bg_white">
-                                    <h1>Bienvenidos a <span class="">Alquiler de Apartamentos</span></h1>
+                                    <h1><span class="">Apartamentos Salazar</span></h1>
                                     <p>Empresa dedicada al alquiler de apartamentos en la ciudad de Santa Marta,
                                         contamos
-                                        con todos tipo de apartamentos, contatactanos para mas información.</p>
+                                        con todos tipo de apartamentos. Contáctanos para mas información.</p>
                                 </div>
                             </div>
                         </div>
@@ -98,6 +96,8 @@
                 </div>
             </div>
         </div>
+
+
 
         <section class="contenedor-alquileres" id="contenidoAlquileres">
 
@@ -150,152 +150,182 @@
 
         <section class="container-lugares-slider">
             <div class="container-lugares">
-              <div class="swiper-container mySwiper">
-                <div class="swiper-wrapper">
-            
-                  <div class="swiper-slide">
-                    <div class="titulo">
-                        <h4 class="titulo__cartas">lugar</h4>
-                    </div>
-            
-                    <div class="contenido-slider">
-                        <img class="imagen__izquierda" src="./imagenes/apartamento.webp" alt="Apartamento">
-                        
-                        <div class="contenido-texto">
-                          <p  >Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
+
+                <div class="swiper-container mySwiper">
+                    <div class="swiper-wrapper">
+
+                        <div class="swiper-slide">
+                            <div class="titulo">
+                                <h4 class="titulo__cartas">lugar</h4>
+                            </div>
+
+                            <div class="contenido-slider">
+                                <img class="imagen__izquierda" src="./imagenes/apartamento.webp" alt="Apartamento">
+
+                                <div class="contenido-texto">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo
+                                        eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum
+                                        expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
+                                </div>
+                                <div class="boton-slider">
+                                    <button id="btn_slider"><a href="#"></a>Ver más</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="boton-slider">
-                            <button id="btn_slider"><a href="#"></a>Ver más</button>
-                        </div> 
-                    </div>   
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="titulo">
-                        <h4 class="titulo__cartas">lugar</h4>
-                    </div>
-                    <div class="contenido-slider">
-                        <img class="imagen__izquierda" src="./imagenes/fondo.webp" alt="Apartamento">
-                        
-                        <div class="contenido-texto">
-                          <p  >Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
+
+                        <div class="swiper-slide">
+                            <div class="titulo">
+                                <h4 class="titulo__cartas">lugar</h4>
+                            </div>
+                            <div class="contenido-slider">
+                                <img class="imagen__izquierda" src="./imagenes/fondo.webp" alt="Apartamento">
+
+                                <div class="contenido-texto">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo
+                                        eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum
+                                        expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
+                                </div>
+                                <div class="boton-slider">
+                                    <button id="btn_slider"><a href="#"></a>Ver más</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="boton-slider">
-                            <button id="btn_slider"><a href="#"></a>Ver más</button>
-                        </div> 
-                    </div>   
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="titulo">
-                        <h4 class="titulo__cartas">lugar</h4>
-                    </div>
-                    <div class="contenido-slider">
-                        <img class="imagen__izquierda" src="./imagenes/apartamento-fondo.webp" alt="Apartamento">
-                        
-                        <div class="contenido-texto">
-                          <p  >Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
+
+                        <div class="swiper-slide">
+                            <div class="titulo">
+                                <h4 class="titulo__cartas">lugar</h4>
+                            </div>
+                            <div class="contenido-slider">
+                                <img class="imagen__izquierda" src="./imagenes/apartamento-fondo.webp"
+                                    alt="Apartamento">
+
+                                <div class="contenido-texto">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo
+                                        eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum
+                                        expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
+                                </div>
+                                <div class="boton-slider">
+                                    <button id="btn_slider"><a href="#"></a>Ver más</button>
+                                </div>
+                            </div>
                         </div>
-                        <div class="boton-slider">
-                            <button id="btn_slider"><a href="#"></a>Ver más</button>
-                        </div> 
-                    </div>   
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="titulo">
-                    <h4 class="titulo__cartas">lugar</h4>
+
+                        <div class="swiper-slide">
+                            <div class="titulo">
+                                <h4 class="titulo__cartas">lugar</h4>
+                            </div>
+                            <div class="contenido-slider">
+                                <img class="imagen__izquierda" src="./imagenes/apartamento.webp" alt="Apartamento">
+
+                                <div class="contenido-texto">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo
+                                        eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum
+                                        expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
+                                </div>
+                                <div class="boton-slider">
+                                    <button id="btn_slider"><a href="#"></a>Ver más</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="titulo">
+                                <h4 class="titulo__cartas">lugar</h4>
+                            </div>
+                            <div class="contenido-slider">
+                                <img class="imagen__izquierda" src="./imagenes/fondo.webp" alt="Apartamento">
+
+                                <div class="contenido-texto">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo
+                                        eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum
+                                        expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
+                                </div>
+                                <div class="boton-slider">
+                                    <button id="btn_slider"><a href="#"></a>Ver más</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="titulo">
+                                <h4 class="titulo__cartas">lugar</h4>
+                            </div>
+                            <div class="contenido-slider">
+                                <img class="imagen__izquierda" src="./imagenes/fondo.webp" alt="Apartamento">
+
+                                <div class="contenido-texto">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo
+                                        eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum
+                                        expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
+                                </div>
+                                <div class="boton-slider">
+                                    <button id="btn_slider"><a href="#"></a>Ver más</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="titulo">
+                                <h4 class="titulo__cartas">lugar</h4>
+                            </div>
+                            <div class="contenido-slider">
+                                <img class="imagen__izquierda" src="./imagenes/apartamento-fondo.webp"
+                                    alt="Apartamento">
+
+                                <div class="contenido-texto">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo
+                                        eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum
+                                        expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
+                                </div>
+                                <div class="boton-slider">
+                                    <button id="btn_slider"><a href="#"></a>Ver más</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="titulo">
+                                <h4 class="titulo__cartas">lugar</h4>
+                            </div>
+                            <div class="contenido-slider">
+                                <img class="imagen__izquierda" src="./imagenes/fondo.webp" alt="Apartamento">
+
+                                <div class="contenido-texto">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo
+                                        eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum
+                                        expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
+                                </div>
+                                <div class="boton-slider">
+                                    <button id="btn_slider"><a href="#"></a>Ver más</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="titulo">
+                                <h4 class="titulo__cartas">lugar</h4>
+                            </div>
+                            <div class="contenido-slider">
+                                <img class="imagen__izquierda" src="./imagenes/apartamento.webp" alt="Apartamento">
+                                <div class="contenido-texto">
+                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo
+                                        eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum
+                                        expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
+                                </div>
+                                <div class="boton-slider">
+                                    <button id="btn_slider"><a href="#"></a>Ver más</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-pagination"></div>
                 </div>
-                <div class="contenido-slider">
-                    <img class="imagen__izquierda" src="./imagenes/apartamento.webp" alt="Apartamento">
-                 
-                    <div class="contenido-texto">
-                      <p  >Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
-                    </div>
-                    <div class="boton-slider">
-                        <button id="btn_slider"><a href="#"></a>Ver más</button>
-                    </div> 
-                </div>   </div>
-                  <div class="swiper-slide">
-                    <div class="titulo">
-                        <h4 class="titulo__cartas">lugar</h4>
-                    </div>
-                    <div class="contenido-slider">
-                        <img class="imagen__izquierda" src="./imagenes/fondo.webp" alt="Apartamento">
-                        
-                        <div class="contenido-texto">
-                          <p  >Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
-                        </div>
-                        <div class="boton-slider">
-                            <button id="btn_slider"><a href="#"></a>Ver más</button>
-                        </div> 
-                    </div>   
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="titulo">
-                    <h4 class="titulo__cartas">lugar</h4>
-                </div>
-                <div class="contenido-slider">
-                    <img class="imagen__izquierda" src="./imagenes/fondo.webp" alt="Apartamento">
-                 
-                    <div class="contenido-texto">
-                      <p  >Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
-                    </div>
-                    <div class="boton-slider">
-                        <button id="btn_slider"><a href="#"></a>Ver más</button>
-                    </div> 
-                </div>   
             </div>
-                  <div class="swiper-slide">
-                    <div class="titulo">
-                        <h4 class="titulo__cartas">lugar</h4>
-                    </div>
-                    <div class="contenido-slider">
-                        <img class="imagen__izquierda" src="./imagenes/apartamento-fondo.webp" alt="Apartamento">
-                        
-                        <div class="contenido-texto">
-                          <p  >Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
-                        </div>
-                        <div class="boton-slider">
-                            <button id="btn_slider"><a href="#"></a>Ver más</button>
-                        </div> 
-                    </div>   
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="titulo">
-                        <h4 class="titulo__cartas">lugar</h4>
-                    </div>
-                    <div class="contenido-slider">
-                        <img class="imagen__izquierda" src="./imagenes/fondo.webp" alt="Apartamento">
-                        
-                        <div class="contenido-texto">
-                          <p  >Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
-                        </div>
-                        <div class="boton-slider">
-                            <button id="btn_slider"><a href="#"></a>Ver más</button>
-                        </div> 
-                    </div>   
-                  </div>
-                  <div class="swiper-slide">
-                    <div class="titulo">
-                        <h4 class="titulo__cartas">lugar</h4>
-                    </div>
-                    <div class="contenido-slider">
-                        <img class="imagen__izquierda" src="./imagenes/apartamento.webp" alt="Apartamento">
-                        <div class="contenido-texto">
-                          <p  >Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla possimus explicabo eaque ipsam, excepturi odit voluptatibus nisi nobis dignissimos nihil cum expedita nesciunt eius itaque illum praesentium voluptas soluta pariatur.</p>
-                        </div>
-                        <div class="boton-slider">
-                            <button id="btn_slider"><a href="#"></a>Ver más</button>
-                        </div> 
-                    </div>  
-                   
-                  </div>
-                </div>
-                <div class="swiper-button-next"></div>
-                <div class="swiper-button-prev"></div>
-                <div class="swiper-pagination"></div>
-              </div>
-              </div>
-          </section>
-        
+        </section>
 
         <footer>
             <div class="footer-container" id="contactanos">

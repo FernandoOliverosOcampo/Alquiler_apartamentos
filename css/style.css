@@ -62,6 +62,10 @@ li {
     grid-area: banner;
 }
 
+.destinos {
+    grid-area: destinos;
+}
+
 .contenedor-alquileres {
     grid-area: alquileres;
 }
@@ -79,7 +83,7 @@ li {
 .menu {
     background: #fdfdfd;
     display: grid;
-    padding: 1.2vw 2vw;
+    padding: 1vw 2vw;
 }
 
 .menu-contenedor {
@@ -91,7 +95,7 @@ li {
 
 .menu-titulo {
     grid-area: titulo;
-    display: grid;
+    display: flex;
     align-items: center;
 }
 
@@ -114,6 +118,11 @@ li {
     color: #141111;
 }
 
+.logo__inmobilaria {
+    width: 4vw;
+    height: auto;
+}
+
 .menu-opciones li a {
     color: #141111;
 }
@@ -129,7 +138,7 @@ li {
 }
 
 .opciones-menu-navegacion .menu-navegacion__opcion {
-    padding: 0.5vw 3vw;
+    padding: 0.5vw 2vw;
 }
 
 .opciones-menu-navegacion .menu-navegacion__opcion a {
@@ -143,7 +152,7 @@ li {
 
 /** banner_main **/
 .banner_main {
-    background: url(../imagenes/apartamento-fondo.webp);
+    background: url(../imagenes/apartamento.webp);
     background-size: 100% 100%;
     background-position: center;
     background-repeat: no-repeat;
@@ -164,6 +173,7 @@ li {
 }
 
 .bg_white {
+    text-align: center;
     background: #fffffff0;
     padding: 45px 20px 50px 20px;
     opacity: 0.90;
@@ -171,7 +181,6 @@ li {
 
 .banner_main .bg_white h1 {
     color: #141111;
-    text-align: center;
     font-size: 70px;
     line-height: 84px;
     font-weight: 700;
@@ -181,7 +190,6 @@ li {
 .banner_main .bg_white p {
     margin: 20px;
     color: #2d2d2d;
-    text-align: justify;
     line-height: 30px;
     font-weight: 500;
     padding-bottom: 0px;
@@ -201,6 +209,7 @@ li {
 .carousel-control-prev-icon {
     display: none;
 }
+
 
 /*Contacto whatsapp*/
 #floating-button {
@@ -222,8 +231,6 @@ li {
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
     cursor: pointer;
     transition: all 0.3s ease;
-
-
 }
 
 #chat-circle:hover {
@@ -268,8 +275,6 @@ li {
 
 .mensaje {
     margin: 10px;
-
-
 }
 
 .btn {
@@ -353,9 +358,6 @@ li {
     align-items: center;
 }
 
-.btn__vermas {
-    text-decoration: none;
-}
 
 .alquiler-disponible {
     background-color: rgb(40, 223, 40);
@@ -426,17 +428,7 @@ li {
     height: 40vh;
 }
 
-.contenedor-alquileres .casa .casa-imagen img {
-    max-height: 50vh;
-    max-width: 80vw;
-    width: 30vw;
-    height: 40vh;
-}
 
-.contenedor-alquileres .imagenes-prueba img {
-    width: 30vw;
-    height: 40vh;
-}
 
 .casa-imagen {
     position: relative;
@@ -456,14 +448,13 @@ li {
     background-color: rgba(0, 0, 0, 0.4);
 }
 
-
 .modal .modal-contenido {
     display: grid;
-    height: 75vh;
+    height: 90vh;
+    width: 80vw;
     background-color: #fefefe;
-    margin: 5% auto;
-    padding: 20px;
-    width: 70vw;
+    margin: 2% auto;
+    padding: 1vw;
     border-radius: 0.4vw;
     grid-template-areas:
         "cabecera"
@@ -500,9 +491,15 @@ li {
 .modal-cuerpo .modal-detalles .detalles {
     display: flex;
     padding: 0 1vw;
-    flex-direction: row;
+    flex-direction: column;
     column-gap: 2vw;
     font-size: 1vw;
+    width: 70vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: wrap;
+    height: 20vh;
+    row-gap: 0.5vw;
 }
 
 .modal-cuerpo .modal-cuerpo-imagen {
@@ -511,25 +508,46 @@ li {
     justify-content: center;
 }
 
-.modal-cuerpo .modal-cuerpo-imagen img {
-    height: 40vh;
-    width: auto;
-}
-
 .modal-cuerpo .modal-cuerpo-contenido {
     grid-area: contenido;
     display: grid;
+    grid-template-areas:
+        "titulo"
+        "descripcion";
     justify-content: start;
+    grid-template-rows: auto;
+    row-gap: 2vw;
 }
 
-.modal-cuerpo .modal-cuerpo-contenido .descripcion-casa .descripcion-casa__texto {
+.modal-cuerpo .modal-cuerpo-contenido .modal-titulo {
+    grid-area: titulo;
+}
+
+.modal-cuerpo .modal-cuerpo-contenido .descripcion-casa {
+    grid-area: descripcion;
+    word-wrap: break-word;
+    display: grid;
+    row-gap: 0.5vw;
+
+}
+
+.modal-cuerpo .modal-cuerpo-contenido .descripcion-casa .descripcion-casa-parrafo{
+    width: 35vw;
+    height: 35vh;
+    overflow-y: auto;
+}
+
+
+.modal-cuerpo .modal-cuerpo-contenido .descripcion-casa p {
     font-size: 1vw;
+    letter-spacing: 1px;
 }
 
 .modal-pie {
     grid-area: pie;
     display: grid;
     justify-content: end;
+    align-content: center;
 }
 
 .modal__titulo {
@@ -724,8 +742,6 @@ li {
     width: 100%;
     height: 180px;
     object-fit: cover;
-
-
 }
 
 .titulo__cartas {
@@ -769,7 +785,6 @@ li {
 }
 
 .footer-logo {
-
     width: 18vw;
     margin-left: 7rem;
 }
