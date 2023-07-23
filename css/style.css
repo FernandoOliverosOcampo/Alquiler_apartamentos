@@ -155,7 +155,7 @@ li {
     background: url(../imagenes/apartamento.webp);
     background-size: 100% 100%;
     background-position: center;
-    background-repeat: no-repeat;
+    background-repeat: round;
     height: 90vh;
     display: flex;
     justify-content: center;
@@ -656,11 +656,15 @@ li {
     height: 60vh;
     align-items: center;
 }
+.fa-2x{
+    font-size: 4em;
+}
 
 .acerca-de .acerca-de-contenido {
     display: grid;
     padding: 5vw 10vw;
     text-align: center;
+    line-height: 30px;
 }
 
 .carrousel-imagenes {
@@ -873,34 +877,187 @@ li {
 }
 
 @media(max-width: 800px) {
+    button{
+        font-size: 2vw;
+        width: auto;
+        height: 2.5vh;
+    }
+    .titulo__menu {
+        font-size: 5vw; 
+    }
+
+    .logo__inmobilaria {
+        width: 10vw; 
+    }
+
+    .menu-opciones .menu__opcion,
+    .menu-opciones .menu__opcion i {
+        font-size: 5vw; 
+    }
+
+    .opciones-menu-navegacion {
+        display: none; 
+    }
+    /*BANNER*/
+    .banner_main .bg_white h1 {
+        font-size: 9vw;
+        line-height: 45px;
+    }
+    .banner_main .bg_white p {
+        font-size: 3.5vw;
+    }
+
+    /*CONTENIDO*/
+    .contenedor-alquileres{
+        display: flex;
+        width: 100vw;
+        height: 60vh;
+    }
+    .contenedor-alquileres .casa{
+        height: 25vh;
+    }
+    .contenedor-alquileres .tns-ovh{
+        height: auto;
+        
+    }
+    .contenedor-alquileres .casa-imagen{
+        height: 10vh;
+    }
+    .contenedor-alquileres .casa-info p{
+        font-size: 1.8vw;
+    }
+
+    .contenedor-alquileres .casa-contenido{
+        font-size: 5vw;
+    }
+    .contenedor-alquileres .casa-titulo .casa__titulo{
+        font-size: 3vw;
+    }
+   
+    /*INFORMACION MAPA*/
+    .mapa-contenedor{
+        height: 50vh;
+    }
+    .mapa-contenedor .informacion-mapa{
+        width: auto;
+        height: 15vh;
+    }
+    .mapa-contenedor .informacion-mapa .informacion__titulo {
+        font-size: 4.5vw;
+        margin: 10px;
+    }
+    .mapa-contenedor .informacion-mapa P{
+        font-size: 2.5vw;
+        line-height: 18px;
+    }
+    /*ACERCA DE NOSOTROS*/
+
+    .acerca-de h2{
+        font-size: 5vw;
+        margin: 15px;
+    }
+    .acerca-de p{
+        font-size: 4vw;
+        line-height: 30px;
+    }
+   
+    /*SLIDER*/
+    .contenido-slider {
+        height: 50vh;
+    }
+    .boton-slider button{
+        font-size: 3.5vw;
+        width: 25vw;
+        height: 4vh;
+    }
+    /*FOOTER*/
     .footer-container {
         flex-direction: column;
         align-items: center;
     }
 
     .footer-logo {
-        width: 32vw;
-        margin-bottom: 3rem;
-        margin-left: 0rem;
+        text-align: center;
+        width: 70vw;
+        flex-direction: row;
+        margin-left: 0;
+        font-size: 4vw;
+    }
+
+    .footer-logo h2 {
+        font-size: 4vw;
+    }
+
+    .footer-logo p {
+        font-size: 3.5vw;
+        line-height: 200%
     }
 
     .footer-links {
+        display: flex;
         flex-direction: column;
-        text-align: center;
+        max-width: 100%;
+        margin-top: 15px;
     }
 
     .footer-links h3 {
-        font-size: 2.4rem;
-        margin: 1rem 0px;
+        font-size: 3.5vw;
     }
 
-    .footer-contactus {
-        width: 21vw;
-        margin-top: 2.4rem;
-        text-align: center;
+    .footer-links ul a li {
+        width: 100%;
+        font-size: 3vw;
+
     }
 
     .footer-contactus h2 {
-        font-size: 2.5rem;
+        font-size: 4vw;
+   
     }
+
+    .footer-contactus {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .footer-contactus button {
+        font-size: 3vw;
+        background: #bbbaba;;
+        width: 30vw;
+        height: 4vh;
+    }
+
+    .copywright-tag {
+        font-size: 2.5vw;
+    }
+
+    /*boton whatsapp*/
+    .chat-box-header h5 {
+        font-size: 3vw;
+    }
+
+    .mensaje {
+        font-size: 3vw;
+
+    }
+
+    .chat-box-body a {
+        font-size: 3vw;
+    }
+
+    #chat-box-toggle {
+        font-size: 3vw;
+
+    }
+
+    .btn-whatsapp {
+        background-color: #25d366;
+        width: 32vw;
+        text-align: start;
+
+    }
+  
 }
