@@ -155,12 +155,12 @@ li {
     background: url(../imagenes/apartamento.webp);
     background-size: 100% 100%;
     background-position: center;
-    background-repeat: round;
-    height: 90vh;
+    object-fit: cover;
+    height: 70vh;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-object-fit:cover;
 }
 
 .banner_main {
@@ -883,23 +883,31 @@ object-fit:cover;
         width: auto;
         height: 2.5vh;
     }
+    .menu{
+        height: 10vh;
+    }
     .titulo__menu {
         font-size: 5vw; 
     }
 
     .logo__inmobilaria {
-        width: 10vw; 
+        height: 7vh;
+        width: 14vw; 
     }
 
     .menu-opciones .menu__opcion,
     .menu-opciones .menu__opcion i {
-        font-size: 5vw; 
+        font-size: 6vw; 
     }
 
     .opciones-menu-navegacion {
         display: none; 
     }
     /*BANNER*/
+    .banner_main{
+        width: 100%;
+        object-fit: cover;
+    }
     .banner_main .bg_white h1 {
         font-size: 9vw;
         line-height: 45px;
@@ -912,36 +920,39 @@ object-fit:cover;
     .contenedor-alquileres{
         display: flex;
         width: 100vw;
-        height: 60vh;
+        height: 100%;
+        padding: 10px;
     }
     .contenedor-alquileres .casa{
-        height: 25vh;
+        height: 33vh;
+        width: 45vw;
     }
+  
     .contenedor-alquileres .tns-ovh{
-        height: auto;
-        
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
     }
-    .contenedor-alquileres .casa-imagen{
-        height: 10vh;
+    .contenedor-alquileres .casa-imagen img{
+        object-fit: cover;
+        width: 100%;
+        height: 100%;
     }
     .contenedor-alquileres .casa-info p{
-        font-size: 1.8vw;
+        font-size: 2.5vw;
+        margin: 2px;
     }
 
-    .contenedor-alquileres .casa-contenido{
-        font-size: 5vw;
-    }
-    .contenedor-alquileres .casa-titulo .casa__titulo{
-        font-size: 3vw;
-    }
-   
+     .contenedor-alquileres .casa-titulo .casa__titulo{
+        font-size: 2.7vw;
+        width: 100%;
+        text-transform: uppercase;
+        margin-top:10px ;
+     }
     /*INFORMACION MAPA*/
-    .mapa-contenedor{
-        height: 50vh;
-    }
-    .mapa-contenedor .informacion-mapa{
+      .mapa-contenedor .informacion-mapa{
         width: auto;
-        height: 15vh;
+        height: 19vh;
     }
     .mapa-contenedor .informacion-mapa .informacion__titulo {
         font-size: 4.5vw;
@@ -964,7 +975,7 @@ object-fit:cover;
    
     /*SLIDER*/
     .contenido-slider {
-        height: 50vh;
+        height: 60vh;
     }
     .boton-slider button{
         font-size: 3.5vw;
@@ -987,6 +998,8 @@ object-fit:cover;
 
     .footer-logo h2 {
         font-size: 4vw;
+        margin-top: 10px;
+        text-transform: uppercase;
     }
 
     .footer-logo p {
@@ -1003,6 +1016,7 @@ object-fit:cover;
 
     .footer-links h3 {
         font-size: 3.5vw;
+        
     }
 
     .footer-links ul a li {
