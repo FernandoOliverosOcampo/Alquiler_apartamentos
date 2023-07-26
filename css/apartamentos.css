@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 @import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap";
 
 * {
@@ -622,4 +623,630 @@ footer{
 	.footer-contactus h2 {
 		font-size: 2.5rem;
 	}
+=======
+@import "https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap";
+
+* {
+	margin: 0;
+	font-family: "Poppins", sans-serif;
+}
+body{
+    background-color: #f2f2f2;
+    scroll-behavior: smooth;
+}
+
+
+li {
+	list-style: none;
+}
+
+button {
+	width: 10vw;
+	height: 5vh;
+	cursor: pointer;
+	border: 1px solid transparent;
+    background-color: #e0e0e0;
+	font-size: 1vw;
+	font-weight: 400;
+	border-radius: 0.3vw;
+}
+button:hover{
+    transform: scale(1.1);
+}
+
+.tns-nav>.tns-nav-active {
+    background: #999;
+}
+
+.tns-nav>[aria-controls] {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    margin: 0 5px;
+    border-radius: 50%;
+    background: #ddd;
+    border: 0;
+}
+
+
+.contenido-pagina{
+	display: grid;
+	grid-template-areas: 
+	"menu"
+	"contenido"
+	"footer";
+	grid-template-rows: 1fr;
+	row-gap: 2vw;
+}
+
+
+/** menu section **/
+
+.menu {
+	grid-area: menu;
+	background: #fdfdfd;
+	display: grid;
+	padding: 1.2vw 2vw;
+}
+
+.menu-contenedor {
+	display: grid;
+	grid-template-areas: "titulo opciones enlaces_directos";
+	justify-content: space-between;
+	align-items: center;
+}
+
+.menu-titulo {
+	grid-area: titulo;
+	display: grid;
+	align-items: center;
+}
+
+.menu-opciones {
+	grid-area: enlaces_directos;
+	display: flex;
+	column-gap: 1vw;
+	align-items: center;
+}
+
+.menu-navegacion {
+	grid-area: opciones;
+	display: grid;
+	justify-content: center;
+}
+
+.titulo__menu {
+	font-weight: bold;
+	font-size: 1vw;
+	color: #141111;
+}
+
+.menu-opciones li a {
+	color: #141111;
+}
+
+.menu-opciones .menu__opcion,
+.menu-opciones .menu__opcion i {
+	font-size: 1.5vw;
+	color: #141111;
+}
+
+.opciones-menu-navegacion {
+	display: flex;
+}
+
+.opciones-menu-navegacion .menu-navegacion__opcion {
+	padding: 0.5vw 3vw;
+}
+
+.opciones-menu-navegacion .menu-navegacion__opcion a {
+	text-decoration: none;
+	color: #141111;
+}
+
+.opciones-menu-navegacion .menu-navegacion__opcion a:hover {
+	border-bottom: 1px solid #141111;
+}
+
+/*Contacto whatsapp*/
+#floating-button {
+    position: fixed;
+    bottom: 45px;
+    right: 40px;
+    z-index: 100;
+}
+
+#chat-circle {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #25d366;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+  
+    
+}
+
+#chat-circle:hover {
+    transform: scale(1.1);
+}
+
+#chat-box {
+    width: 300px;
+    max-width: 100%;
+    background-color: #fff;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+    display: none;
+    position: fixed;
+    bottom: 90px;
+    right: 20px;
+    z-index: 99;
+    border-radius: 15px;
+}
+
+.chat-box-header {
+    background-color: #25d366;
+    color: #fff;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.chat-box-header h5 {
+    margin: 0;
+}
+
+#chat-box-toggle {
+    cursor: pointer;
+}
+
+.chat-box-body {
+    padding: 10px;
+}
+.mensaje{
+    margin: 10px;
+}
+
+.btn {
+    padding: 5px 8px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #fff;
+    background-color: #25d366;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-whatsapp {
+    background-color: #25d366;
+    height: 4vh;
+    width: 10vw;
+}
+
+.btn-whatsapp:hover {
+    background-color: #128c7e;
+}
+.fa-whatsapp{
+    margin:5px;
+}
+#chat-circle:before,
+#chat-circle:after {
+	content: "";
+	position: absolute;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #00e676;
+	opacity: 0;
+	animation: onda 1.7s infinite;
+}
+
+#chat-circle:before {
+	animation-delay: 1s;
+}
+
+#chat-circle:after {
+	animation-delay: 1.3s;
+}
+#chat-circle img {
+	position: relative;
+	z-index: 2;
+}
+
+
+@keyframes onda {
+	0% {
+		transform: scale(1);
+	}
+
+	15% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity: 0;
+		transform: scale(2.5);
+	}
+}
+
+.casa-imagen {
+	position: relative;
+}
+
+.top-right {
+	background-color: rgb(43, 255, 43);
+	position: absolute;
+	top: 8px;
+	width: 7vw;
+	border-radius: 0.5vw;
+	right: 0.5vw;
+}
+
+.lista-alquileres .casa .casa-contenido {
+	display: grid;
+	column-gap: 2vw;
+	justify-items: center;
+	padding: 0.5vw 1vw 1vw;
+}
+
+
+.lista-alquileres .casa .casa-imagen {
+    grid-area: imagen;
+}
+
+.lista-alquileres .casa .casa-contenido {
+    grid-area: informacion;
+}
+
+.lista-alquileres .casa .casa-contenido {
+    display: grid;
+    column-gap: 2vw;
+    justify-items: center;
+    padding: 0.5vw 1vw 1vw;
+}
+
+.lista-alquileres .casa-contenido .casa-info {
+    display: flex;
+    flex-direction: row;
+    column-gap: 1.2vw;
+    font-size: 1vw;
+}
+
+.lista-alquileres .casa-titulo .casa__titulo {
+    font-size: 1.7vw;
+    font-weight: 600;
+}
+
+.lista-alquileres {
+	display: grid;
+	grid-area: contenido;
+	justify-content: center;
+	row-gap: 5vh;
+}
+
+.lista-alquileres .casa {
+	display: grid;
+	grid-template-areas:
+		"imagen informacion";
+	grid-template-rows: auto;
+	justify-items: center;
+	justify-content: space-between;
+	border-radius: 0.5vw;
+	text-align: center;
+	background-color: #fff;
+	height: 30vh;
+	width: 70vw;
+	box-shadow: 0px 0px 30px rgba(221, 221, 211, 0.3);
+}
+
+.lista-alquileres .casa .casa-imagen img{
+	height: 50vh;
+	width: auto;
+}
+
+.lista-alquileres .casa .casa-contenido {
+	display: grid;
+	grid-template-areas:
+		"titulo info boton";
+	align-items: center;
+}
+
+.lista-alquileres .casa .casa-titulo {
+	grid-area: titulo;
+}
+
+.lista-alquileres .casa .casa-info {
+	grid-area: info;
+}
+
+.lista-alquileres .casa .casa-boton {
+	grid-area: boton;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    /* POr defecto no se muestran en pantalla hasta que se abran */
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal .modal-contenido {
+    display: grid;
+    height: 90vh;
+    width: 80vw;
+    background-color: #fefefe;
+    margin: 2% auto;
+    padding: 1vw;
+    border-radius: 0.4vw;
+    grid-template-areas:
+        "cabecera"
+        "cuerpo"
+        "pie";
+    grid-template-rows: 5vh auto 5vh;
+}
+
+.modal .modal-cabecera {
+    grid-area: cabecera;
+}
+
+.modal .modal-cuerpo {
+    grid-area: cuerpo;
+    display: grid;
+    grid-template-areas:
+        "imagen contenido"
+        "detalles detalles";
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    justify-content: start;
+}
+
+.modal-cuerpo .modal-detalles {
+    grid-area: detalles;
+    display: grid;
+}
+
+.modal-cuerpo .modal-detalles {
+    display: flex;
+    margin-left: 4.5vw;
+}
+
+.modal-cuerpo .modal-detalles .detalles {
+    display: flex;
+    padding: 0 1vw;
+    flex-direction: column;
+    column-gap: 2vw;
+    font-size: 1vw;
+    width: 70vw;
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: wrap;
+    height: 20vh;
+    row-gap: 0.5vw;
+}
+
+.modal-cuerpo .modal-cuerpo-imagen {
+    grid-area: imagen;
+    display: flex;
+    justify-content: center;
+}
+
+.modal-cuerpo .modal-cuerpo-imagen img{
+	height: 50vh;
+	width: auto;
+}
+
+
+.modal-cuerpo .modal-cuerpo-contenido {
+    grid-area: contenido;
+    display: grid;
+    grid-template-areas:
+        "titulo"
+        "descripcion";
+    justify-content: start;
+    grid-template-rows: auto;
+    row-gap: 2vw;
+}
+
+.modal-cuerpo .modal-cuerpo-contenido .modal-titulo {
+    grid-area: titulo;
+}
+
+.modal-cuerpo .modal-cuerpo-contenido .descripcion-casa {
+    grid-area: descripcion;
+    word-wrap: break-word;
+    display: grid;
+    row-gap: 0.5vw;
+
+}
+
+.modal-cuerpo .modal-cuerpo-contenido .descripcion-casa .descripcion-casa-parrafo{
+    width: 35vw;
+    height: 35vh;
+    overflow-y: auto;
+}
+
+
+.modal-cuerpo .modal-cuerpo-contenido .descripcion-casa p {
+    font-size: 1vw;
+    letter-spacing: 1px;
+}
+
+.modal-pie {
+    grid-area: pie;
+    display: grid;
+    justify-content: end;
+    align-content: center;
+}
+
+.modal__titulo {
+    font-size: 2vw;
+}
+
+.modal__descripcion {
+    color: #4e4e4e;
+    font-size: 1.2vw;
+}
+
+/* The Close Button */
+.btn-cerrar-modal {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.btn-cerrar-modal:hover,
+.btn-cerrar-modal:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+footer{
+	grid-area: footer;
+}
+
+/* FOOTER */
+.footer-container {
+	background-color: #edebed8c;
+	display: flex;
+	justify-content: space-around;
+	padding: 2vw 3vw;
+}
+
+
+.footer-logo {
+
+	width: 18vw;
+	margin-left: 7rem;
+}
+
+.footer-logo h2 {
+	font-size: 2vw;
+}
+
+.footer-logo p {
+	font-size: 1vw;
+	color: #6e6b6b;
+	padding: 1.5rem 0rem;
+	line-height: 2.1rem;
+}
+
+.footer-logo a {
+	text-decoration: none;
+}
+
+.fa {
+	background-color: var(--black);
+	color: #ffffff;
+	padding: .6rem;
+	border-radius: .3rem;
+}
+
+.icons {
+	margin: 0rem 1.5rem;
+}
+
+.footer-links {
+	width: 40vw;
+	display: flex;
+	justify-content: space-between;
+	font-size: 1vw;
+}
+
+.footer-links ul a li {
+	list-style-type: none;
+	padding: 1rem 0rem;
+}
+
+.footer-links ul a {
+	text-decoration: none;
+	color: #6e6b6b;
+}
+
+.footer-contactus {
+	width: 17vw;
+}
+
+.footer-contactus h2 {
+	font-size: 2vw;
+}
+
+.footer-contactus button {
+	font-size: 1vw;
+	border: 1px solid transparent;
+    background-color: #e0e0e0;
+	border-radius: .4rem;
+	color: black;
+	margin-top: 1.6rem;
+	cursor: pointer;
+}
+.footer-contactus button:hover{
+	transform: scale(1.1);
+}
+
+.copywright-tag {
+	background-color: lightgray;
+	padding: 1.5rem;
+	font-size: 1vw;
+	text-align: center;
+}
+
+.redes {
+	color: black;
+}
+
+
+@media(max-width: 986px) {
+	html {
+		font-size: 55%;
+	}
+}
+
+@media(max-width: 800px) {
+	.footer-container {
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.footer-logo {
+		width: 32vw;
+		margin-bottom: 3rem;
+		margin-left: 0rem;
+	}
+
+	.footer-links {
+		flex-direction: column;
+		text-align: center;
+	}
+
+	.footer-links h3 {
+		font-size: 2.4rem;
+		margin: 1rem 0px;
+	}
+
+	.footer-contactus {
+		width: 21vw;
+		margin-top: 2.4rem;
+		text-align: center;
+	}
+
+	.footer-contactus h2 {
+		font-size: 2.5rem;
+	}
+>>>>>>> b621d558068f6bd40b1338fa32e9ae44615f1120
 }
