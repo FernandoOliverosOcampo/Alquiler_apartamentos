@@ -975,12 +975,10 @@ li {
      }
      .modal-cuerpo .modal-cuerpo-contenido .descripcion-casa p {
         font-size: 2vw;
-        letter-spacing: 1.5px;
      }
      .modal__titulo {
         font-size: 3vw;
     }
-  
     /*INFORMACION MAPA*/
       .mapa-contenedor .informacion-mapa{
         width: auto;
